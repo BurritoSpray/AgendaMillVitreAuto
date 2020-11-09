@@ -15,11 +15,11 @@ namespace AgendaMillVitreAuto
         private int mID;
         private string mSecondName;
         private string mFirstName;
-        private string mBussinessName = "";
+        private string mbusinessName = "";
         private string mPhone;
         private List<Vehicle> mVehicles = new List<Vehicle>();
         private string mAddress;
-        private bool isBussiness = false;
+        private bool isbusiness = false;
         private SqlConnection con = new SqlConnection();
         //Creation d'un client vide
         public Client()
@@ -38,9 +38,9 @@ namespace AgendaMillVitreAuto
             mSecondName = client.SecondName;
             mAddress = client.Address;
             mPhone = client.Phone;
-            mBussinessName = client.BussinessName;
+            mbusinessName = client.businessName;
             mVehicles = client.VehicleList;
-            IsCompagnie = client.IsCompagnie;
+            Isbusiness = client.Isbusiness;
 
         }
         //Creation d'un client de base
@@ -53,46 +53,33 @@ namespace AgendaMillVitreAuto
             mAddress = addresse;
             mVehicles = con.SelectClientVehicles(mID);
         }
-        public Client(string ID, string nom, string prenom, string telephone, string addresse, string compagnie) : this(ID, nom, prenom, telephone, addresse)
+        public Client(string ID, string secondName, string name, string phone, string address, string business) : this(ID, secondName, name, phone, address)
         {
-            mBussinessName = compagnie;
-            isBussiness = true;
+            mbusinessName = business;
+            isbusiness = true;
         }
-        ////Creation d'un client de base sans Address;
-        //public Client(string nom, string prenom, string telephone)
-        //{
-        //    mSecondName = nom;
-        //    mFirstName = prenom;
-        //    mPhone = telephone;
-        //}
-        ////Creation d'un client Compagnie
-        //public Client(string compagnie, string telephone)
-        //{
-        //    isBussiness = true;
-        //    mBussinessName = compagnie;
-        //    mPhone = telephone;
-        //}
+
         public int ID { get { return mID; } }
-        public bool IsCompagnie{ get { return isBussiness; } set { isBussiness = value; } }
+        public bool Isbusiness{ get { return isbusiness; } set { isbusiness = value; } }
         public string SecondName{ get { return mSecondName; } }
         public string FirstName{ get { return mFirstName; } }
         public string FullName{ get { return string.Format("{0} {1}", mFirstName, mSecondName); } }
         public List<Vehicle> VehicleList{ get { return mVehicles; } }
         public string Phone{ get { return mPhone; } }
         public string Address{ get { return mAddress; } }
-        public string BussinessName { 
+        public string businessName { 
             get
             {
-                if (isBussiness == true)
+                if (isbusiness == true)
                 {
-                    return mBussinessName;
+                    return mbusinessName;
                 }
                 else
                 {
                     return "";
                 }
             }
-            set { mBussinessName = value; }
+            set { mbusinessName = value; }
         }
     }
 }

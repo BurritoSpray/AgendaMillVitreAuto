@@ -31,17 +31,17 @@
             this.labelModifyClient = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.labelFirstName = new System.Windows.Forms.Label();
-            this.labelBussiness = new System.Windows.Forms.Label();
+            this.labelbusiness = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
-            this.textBoxBussiness = new System.Windows.Forms.TextBox();
+            this.textBoxbusiness = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.textBoxSecondName = new System.Windows.Forms.TextBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonConfirm = new System.Windows.Forms.Button();
-            this.checkBoxIsBussiness = new System.Windows.Forms.CheckBox();
+            this.checkBoxIsbusiness = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // labelModifyClient
@@ -74,15 +74,15 @@
             this.labelFirstName.TabIndex = 2;
             this.labelFirstName.Text = "Prénom:";
             // 
-            // labelBussiness
+            // labelbusiness
             // 
-            this.labelBussiness.AutoSize = true;
-            this.labelBussiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBussiness.Location = new System.Drawing.Point(12, 88);
-            this.labelBussiness.Name = "labelBussiness";
-            this.labelBussiness.Size = new System.Drawing.Size(98, 20);
-            this.labelBussiness.TabIndex = 3;
-            this.labelBussiness.Text = "Compagnie: ";
+            this.labelbusiness.AutoSize = true;
+            this.labelbusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelbusiness.Location = new System.Drawing.Point(12, 88);
+            this.labelbusiness.Name = "labelbusiness";
+            this.labelbusiness.Size = new System.Drawing.Size(98, 20);
+            this.labelbusiness.TabIndex = 3;
+            this.labelbusiness.Text = "Compagnie: ";
             // 
             // label5
             // 
@@ -118,12 +118,12 @@
             this.textBoxPhone.Size = new System.Drawing.Size(127, 20);
             this.textBoxPhone.TabIndex = 18;
             // 
-            // textBoxBussiness
+            // textBoxbusiness
             // 
-            this.textBoxBussiness.Location = new System.Drawing.Point(136, 90);
-            this.textBoxBussiness.Name = "textBoxBussiness";
-            this.textBoxBussiness.Size = new System.Drawing.Size(127, 20);
-            this.textBoxBussiness.TabIndex = 17;
+            this.textBoxbusiness.Location = new System.Drawing.Point(136, 90);
+            this.textBoxbusiness.Name = "textBoxbusiness";
+            this.textBoxbusiness.Size = new System.Drawing.Size(127, 20);
+            this.textBoxbusiness.TabIndex = 17;
             // 
             // textBoxFirstName
             // 
@@ -159,32 +159,32 @@
             this.buttonConfirm.UseVisualStyleBackColor = true;
             this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
             // 
-            // checkBoxIsBussiness
+            // checkBoxIsbusiness
             // 
-            this.checkBoxIsBussiness.AutoSize = true;
-            this.checkBoxIsBussiness.Location = new System.Drawing.Point(116, 93);
-            this.checkBoxIsBussiness.Name = "checkBoxIsBussiness";
-            this.checkBoxIsBussiness.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxIsBussiness.TabIndex = 22;
-            this.checkBoxIsBussiness.UseVisualStyleBackColor = true;
-            this.checkBoxIsBussiness.CheckedChanged += new System.EventHandler(this.checkBoxIsBussiness_CheckedChanged);
+            this.checkBoxIsbusiness.AutoSize = true;
+            this.checkBoxIsbusiness.Location = new System.Drawing.Point(116, 93);
+            this.checkBoxIsbusiness.Name = "checkBoxIsbusiness";
+            this.checkBoxIsbusiness.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxIsbusiness.TabIndex = 22;
+            this.checkBoxIsbusiness.UseVisualStyleBackColor = true;
+            this.checkBoxIsbusiness.CheckedChanged += new System.EventHandler(this.checkBoxIsbusiness_CheckedChanged);
             // 
             // ModifyClientWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(273, 225);
-            this.Controls.Add(this.checkBoxIsBussiness);
+            this.Controls.Add(this.checkBoxIsbusiness);
             this.Controls.Add(this.buttonConfirm);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.textBoxAddress);
             this.Controls.Add(this.textBoxPhone);
-            this.Controls.Add(this.textBoxBussiness);
+            this.Controls.Add(this.textBoxbusiness);
             this.Controls.Add(this.textBoxFirstName);
             this.Controls.Add(this.textBoxSecondName);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.labelBussiness);
+            this.Controls.Add(this.labelbusiness);
             this.Controls.Add(this.labelFirstName);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelModifyClient);
@@ -200,16 +200,16 @@
         private System.Windows.Forms.Label labelModifyClient;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label labelFirstName;
-        private System.Windows.Forms.Label labelBussiness;
+        private System.Windows.Forms.Label labelbusiness;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxAddress;
         private System.Windows.Forms.TextBox textBoxPhone;
-        private System.Windows.Forms.TextBox textBoxBussiness;
+        private System.Windows.Forms.TextBox textBoxbusiness;
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.TextBox textBoxSecondName;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonConfirm;
-        private System.Windows.Forms.CheckBox checkBoxIsBussiness;
+        private System.Windows.Forms.CheckBox checkBoxIsbusiness;
     }
 }

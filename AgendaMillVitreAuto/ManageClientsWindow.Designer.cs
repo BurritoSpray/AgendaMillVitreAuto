@@ -33,7 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxSecondName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
-            this.textBoxBussiness = new System.Windows.Forms.TextBox();
+            this.textBoxbusiness = new System.Windows.Forms.TextBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.textBoxBrand = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.buttonNewClient = new System.Windows.Forms.Button();
             this.radioPrivate = new System.Windows.Forms.RadioButton();
-            this.radioBussiness = new System.Windows.Forms.RadioButton();
+            this.radiobusiness = new System.Windows.Forms.RadioButton();
             this.buttonDeleteSelectedClient = new System.Windows.Forms.Button();
             this.buttonDeleteSelectedVehicle = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
@@ -119,13 +119,13 @@
             this.textBoxFirstName.Size = new System.Drawing.Size(127, 20);
             this.textBoxFirstName.TabIndex = 11;
             // 
-            // textBoxBussiness
+            // textBoxbusiness
             // 
-            this.textBoxBussiness.Enabled = false;
-            this.textBoxBussiness.Location = new System.Drawing.Point(105, 83);
-            this.textBoxBussiness.Name = "textBoxBussiness";
-            this.textBoxBussiness.Size = new System.Drawing.Size(127, 20);
-            this.textBoxBussiness.TabIndex = 12;
+            this.textBoxbusiness.Enabled = false;
+            this.textBoxbusiness.Location = new System.Drawing.Point(105, 83);
+            this.textBoxbusiness.Name = "textBoxbusiness";
+            this.textBoxbusiness.Size = new System.Drawing.Size(127, 20);
+            this.textBoxbusiness.TabIndex = 12;
             // 
             // textBoxPhone
             // 
@@ -259,17 +259,17 @@
             this.radioPrivate.UseVisualStyleBackColor = true;
             this.radioPrivate.CheckedChanged += new System.EventHandler(this.radioAll_CheckedChanged);
             // 
-            // radioBussiness
+            // radiobusiness
             // 
-            this.radioBussiness.AutoSize = true;
-            this.radioBussiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioBussiness.Location = new System.Drawing.Point(247, 290);
-            this.radioBussiness.Name = "radioBussiness";
-            this.radioBussiness.Size = new System.Drawing.Size(252, 28);
-            this.radioBussiness.TabIndex = 29;
-            this.radioBussiness.Text = "Commerce ou Compagnie";
-            this.radioBussiness.UseVisualStyleBackColor = true;
-            this.radioBussiness.CheckedChanged += new System.EventHandler(this.radioAll_CheckedChanged);
+            this.radiobusiness.AutoSize = true;
+            this.radiobusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radiobusiness.Location = new System.Drawing.Point(247, 290);
+            this.radiobusiness.Name = "radiobusiness";
+            this.radiobusiness.Size = new System.Drawing.Size(252, 28);
+            this.radiobusiness.TabIndex = 29;
+            this.radiobusiness.Text = "Commerce ou Compagnie";
+            this.radiobusiness.UseVisualStyleBackColor = true;
+            this.radiobusiness.CheckedChanged += new System.EventHandler(this.radioAll_CheckedChanged);
             // 
             // buttonDeleteSelectedClient
             // 
@@ -498,7 +498,7 @@
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.buttonDeleteSelectedVehicle);
             this.Controls.Add(this.buttonDeleteSelectedClient);
-            this.Controls.Add(this.radioBussiness);
+            this.Controls.Add(this.radiobusiness);
             this.Controls.Add(this.radioPrivate);
             this.Controls.Add(this.buttonNewClient);
             this.Controls.Add(this.label9);
@@ -513,7 +513,7 @@
             this.Controls.Add(this.textBoxBrand);
             this.Controls.Add(this.textBoxAddress);
             this.Controls.Add(this.textBoxPhone);
-            this.Controls.Add(this.textBoxBussiness);
+            this.Controls.Add(this.textBoxbusiness);
             this.Controls.Add(this.textBoxFirstName);
             this.Controls.Add(this.textBoxSecondName);
             this.Controls.Add(this.label2);
@@ -536,7 +536,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxSecondName;
         private System.Windows.Forms.TextBox textBoxFirstName;
-        private System.Windows.Forms.TextBox textBoxBussiness;
+        private System.Windows.Forms.TextBox textBoxbusiness;
         private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.TextBox textBoxAddress;
         private System.Windows.Forms.TextBox textBoxBrand;
@@ -551,7 +551,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button buttonNewClient;
         private System.Windows.Forms.RadioButton radioPrivate;
-        private System.Windows.Forms.RadioButton radioBussiness;
+        private System.Windows.Forms.RadioButton radiobusiness;
         private System.Windows.Forms.Button buttonDeleteSelectedClient;
         private System.Windows.Forms.Button buttonDeleteSelectedVehicle;
         private System.Windows.Forms.TextBox textBoxSearch;

@@ -15,7 +15,7 @@ namespace AgendaMillVitreAuto
         private string mModel;
         private string mColor;
         private int mYear;
-        private bool mIsBussiness;
+        private bool mIsbusiness;
         private string mVehicleNumber;
         //Creation de Vehicule de base vide
         public Vehicle()
@@ -26,7 +26,7 @@ namespace AgendaMillVitreAuto
             mModel = "";
             mColor = "";
             mYear = 0;
-            mIsBussiness = false;
+            mIsbusiness = false;
             mVehicleNumber = "";
         }
         //Creation Vehicle de base sans numero de compagnie
@@ -40,7 +40,7 @@ namespace AgendaMillVitreAuto
             mModel = vehicle.Model;
             mColor = vehicle.Color;
             mYear = vehicle.Year;
-            mIsBussiness = vehicle.IsBussinessVehicle;
+            mIsbusiness = vehicle.IsbusinessVehicle;
             mVehicleNumber = vehicle.VehicleNumber;
         }
         public Vehicle(string ownerID, string brand, string model, string color, string year, string vehicleNumber)
@@ -51,7 +51,7 @@ namespace AgendaMillVitreAuto
             mModel = model;
             mColor = color;
             mYear = int.Parse(year);
-            mIsBussiness = false;
+            mIsbusiness = false;
             mVehicleNumber = vehicleNumber;
         }
         public Vehicle(string ownerID, string vehicleID, string brand, string model, string color, string year, string vehicleNumber)
@@ -75,7 +75,7 @@ namespace AgendaMillVitreAuto
         public string Color { get { return mColor; } set { mColor = value; } }
         public int Year { get { return mYear; } set { mYear = value; } }
         public int ID { get { return mID; } }
-        public bool IsBussinessVehicle { get { return mIsBussiness; } set { mIsBussiness = value; } }
+        public bool IsbusinessVehicle { get { return mIsbusiness; } set { mIsbusiness = value; } }
         public string VehicleNumber { get { return mVehicleNumber; } set { mVehicleNumber = value; } }
         public int OwnerID { get { return mOwnerID; } set { mOwnerID = value; } }
         public string[] VehicleInfo

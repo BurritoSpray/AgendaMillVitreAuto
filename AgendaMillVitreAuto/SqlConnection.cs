@@ -20,10 +20,10 @@ namespace AgendaMillVitreAuto
         //MySql-DateTime-Format YYYY-MM-DD HH:MI:SS
         //ManageClient Commands---------------------------------------------------------------------------------------------------------
         private string clientListCommand = "SELECT * FROM mill_vitre_auto.client";
-        private string clientListPCommand = "SELECT * FROM mill_vitre_auto.client WHERE IsBussiness = '0'";
-        private string clientListBCommand = "SELECT * FROM mill_vitre_auto.client WHERE IsBussiness = '1'";
-        private string insertNewClient = "INSERT INTO client SET FirstName='{0}',SecondName='{1}',Phone='{2}',Address='{3}',IsBussiness='0',BussinessName=''";
-        private string insertNewBClient = "INSERT INTO client SET FirstName='{0}',SecondName='{1}',Phone='{3}',Address='{3}',IsBussiness='1',BussinessName='{4}'";
+        private string clientListPCommand = "SELECT * FROM mill_vitre_auto.client WHERE Isbusiness = '0'";
+        private string clientListBCommand = "SELECT * FROM mill_vitre_auto.client WHERE Isbusiness = '1'";
+        private string insertNewClient = "INSERT INTO client SET FirstName='{0}',SecondName='{1}',Phone='{2}',Address='{3}',Isbusiness='0',businessName=''";
+        private string insertNewBClient = "INSERT INTO client SET FirstName='{0}',SecondName='{1}',Phone='{3}',Address='{3}',Isbusiness='1',businessName='{4}'";
         private string selectClientVehiclesCommand = "SELECT vehicle.* FROM mill_vitre_auto.vehicle WHERE clientID = {0}";
         private string selectClientIDCommand = "SELECT client.idclient From client WHERE client.FirstName = '{0}' AND client.SecondName = '{1}'";
         private string selectClientInfoCommand = "SELECT client.* FROM client WHERE client.idclient = {0}";
@@ -32,8 +32,8 @@ namespace AgendaMillVitreAuto
         private string deleteSelectedVehicleCommand = "DELETE vehicle.* FROM mill_vitre_auto.vehicle WHERE idvehicle = '{0}'";
         private string insertVehicleCommand = "INSERT INTO vehicle (clientID,brand,model,year,color,vehicleNumber) VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}')";
         private string updateVehicleCommand = "UPDATE vehicle SET brand = '{0}', model = '{1}', year = {2}, color = '{3}', vehicleNumber = '{4}' WHERE vehicle.idvehicle = {5}";
-        private string updateClientInfoCommand = "UPDATE client SET FirstName = '{0}', SecondName = '{1}', Phone = '{2}', Address = '{3}', isBussiness = '0' WHERE client.idclient = {4}";
-        private string updateBClientInfoCommand = "UPDATE client SET FirstName = '{0}', SecondName = '{1}', Phone = '{2}', Address = '{3}', IsBussiness = '1', Bussiness = '{4}' WHERE client.idclient = {5}";
+        private string updateClientInfoCommand = "UPDATE client SET FirstName = '{0}', SecondName = '{1}', Phone = '{2}', Address = '{3}', isbusiness = '0' WHERE client.idclient = {4}";
+        private string updateBClientInfoCommand = "UPDATE client SET FirstName = '{0}', SecondName = '{1}', Phone = '{2}', Address = '{3}', Isbusiness = '1', business = '{4}' WHERE client.idclient = {5}";
         //--------------------------------------------------------------------------------------------------------------------------------
         //ManageAppointment Commands------------------------------------------------------------------------------------------------------
         private string insertAppointmentCommand = "INSERT INTO appointment SET Date='{0}', Job='{1}', ClientID='{2}', VehicleID='{3}', Description='{4}'";
@@ -114,7 +114,7 @@ namespace AgendaMillVitreAuto
                 return clientsList;
             }
         }
-        public List<Client> SelectClientsBussiness()
+        public List<Client> SelectClientsbusiness()
         {
             List<Client> clientsList = new List<Client>();
             if (Connect())
@@ -123,7 +123,7 @@ namespace AgendaMillVitreAuto
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    clientsList.Add(new Client(reader["idclient"].ToString(), reader["SecondName"].ToString(), reader["FirstName"].ToString(), reader["Phone"].ToString(), reader["Address"].ToString(), reader["BussinessName"].ToString()));
+                    clientsList.Add(new Client(reader["idclient"].ToString(), reader["SecondName"].ToString(), reader["FirstName"].ToString(), reader["Phone"].ToString(), reader["Address"].ToString(), reader["businessName"].ToString()));
                 }
                 reader.Close();
                 Disconnect();
@@ -145,10 +145,10 @@ namespace AgendaMillVitreAuto
                 while (reader.Read())
                 {
                     Client client = new Client(reader["idclient"].ToString(), reader["SecondName"].ToString(), reader["FirstName"].ToString(), reader["Phone"].ToString(), reader["Address"].ToString());
-                    if (reader["IsBussiness"].ToString() == "1")
+                    if (reader["Isbusiness"].ToString() == "1")
                     {
-                        client.IsCompagnie = true;
-                        client.BussinessName = reader["BussinessName"].ToString();
+                        client.Isbusiness = true;
+                        client.businessName = reader["businessName"].ToString();
                     }
                     clientList.Add(client);
                 }
@@ -187,12 +187,12 @@ namespace AgendaMillVitreAuto
         public void InsertNewClient(Client client)
         {
             string insertNewClientFormated = string.Empty;
-            if (client.IsCompagnie == true)
+            if (client.Isbusiness == true)
             {
-                //insert Bussiness client
-                insertNewClientFormated = string.Format(insertNewBClient, client.FirstName, client.SecondName, client.Phone, client.Address, client.BussinessName);
+                //insert business client
+                insertNewClientFormated = string.Format(insertNewBClient, client.FirstName, client.SecondName, client.Phone, client.Address, client.businessName);
             }
-            else if(client.IsCompagnie == false)
+            else if(client.Isbusiness == false)
             {
                 insertNewClientFormated = string.Format(insertNewClient, client.FirstName, client.SecondName, client.Phone, client.Address);
             }
@@ -321,11 +321,11 @@ namespace AgendaMillVitreAuto
         public void UpdateClientInfo(Client client)
         {
             string updateClientInfoFormated;
-            if(client.IsCompagnie == true)
+            if(client.Isbusiness == true)
             {
-                updateClientInfoFormated = string.Format(updateBClientInfoCommand, client.FirstName, client.SecondName, client.Phone, client.Address, client.BussinessName, client.ID);
+                updateClientInfoFormated = string.Format(updateBClientInfoCommand, client.FirstName, client.SecondName, client.Phone, client.Address, client.businessName, client.ID);
             }
-            else if(client.IsCompagnie == false)
+            else if(client.Isbusiness == false)
             {
                 updateClientInfoFormated = string.Format(updateClientInfoCommand, client.FirstName, client.SecondName, client.Phone, client.Address, client.ID);
             }

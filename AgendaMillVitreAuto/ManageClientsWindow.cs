@@ -14,7 +14,7 @@ namespace AgendaMillVitreAuto
         private List<Client> clientList = new List<Client>();
         private Client selectedClient = new Client();
         private Vehicle selectedVehicle = new Vehicle();
-        private bool isBussiness = false;
+        private bool isbusiness = false;
 
         public ManageClientsWindow()
         {
@@ -67,9 +67,9 @@ namespace AgendaMillVitreAuto
                 textBoxPhone.Enabled = true;
                 textBoxAddress.Clear();
                 textBoxAddress.Enabled = true;
-                if (isBussiness) { textBoxBussiness.Enabled = true; }
-                else { textBoxBussiness.Enabled = false; }
-                textBoxBussiness.Clear();
+                if (isbusiness) { textBoxbusiness.Enabled = true; }
+                else { textBoxbusiness.Enabled = false; }
+                textBoxbusiness.Clear();
             }
             else
             {
@@ -81,8 +81,8 @@ namespace AgendaMillVitreAuto
                 textBoxPhone.Enabled = false;
                 textBoxAddress.Clear();
                 textBoxAddress.Enabled = false;
-                textBoxBussiness.Clear();
-                textBoxBussiness.Enabled = false;
+                textBoxbusiness.Clear();
+                textBoxbusiness.Enabled = false;
             }
 
         }
@@ -94,9 +94,9 @@ namespace AgendaMillVitreAuto
             {
                 clientList = con.SelectClientsPrivate();
             }
-            else if (radioBussiness.Checked)
+            else if (radiobusiness.Checked)
             {
-                clientList = con.SelectClientsBussiness();
+                clientList = con.SelectClientsbusiness();
             }
             else if(radioAll.Checked)
             {
@@ -169,8 +169,8 @@ namespace AgendaMillVitreAuto
                     textBoxSecondName.Text = selectedClient.SecondName;
                     textBoxPhone.Text = selectedClient.Phone;
                     textBoxAddress.Text = selectedClient.Address;
-                    if (selectedClient.IsCompagnie)
-                        textBoxBussiness.Text = selectedClient.BussinessName;
+                    if (selectedClient.Isbusiness)
+                        textBoxbusiness.Text = selectedClient.businessName;
                     comboBoxVehicle.Items.Clear();
                     SetVehicleComboBox();
                 }
@@ -233,9 +233,9 @@ namespace AgendaMillVitreAuto
                 textBoxSecondName.Text = selectedClient.SecondName;
                 textBoxPhone.Text = selectedClient.Phone;
                 textBoxAddress.Text = selectedClient.Address;
-                if (selectedClient.IsCompagnie)
+                if (selectedClient.Isbusiness)
                 {
-                    textBoxBussiness.Text = selectedClient.BussinessName;
+                    textBoxbusiness.Text = selectedClient.businessName;
                 }
                 //Clear selectedVehicle
                 selectedVehicle = new Vehicle();

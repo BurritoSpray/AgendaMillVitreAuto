@@ -26,23 +26,23 @@ namespace AgendaMillVitreAuto
             textBoxFirstName.Text = selectedClient.FirstName;
             textBoxPhone.Text = selectedClient.Phone;
             textBoxAddress.Text = selectedClient.Address;
-            if (selectedClient.IsCompagnie)
+            if (selectedClient.Isbusiness)
             {
-                textBoxBussiness.Text = selectedClient.BussinessName;
+                textBoxbusiness.Text = selectedClient.businessName;
             }
             else
             {
-                textBoxBussiness.Enabled = false;
+                textBoxbusiness.Enabled = false;
             }
         }
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
             Client client = new Client(selectedClient.ID.ToString(), textBoxSecondName.Text, textBoxFirstName.Text, textBoxPhone.Text, textBoxAddress.Text);
-            if (checkBoxIsBussiness.Checked)
+            if (checkBoxIsbusiness.Checked)
             {
-                client.IsCompagnie = true;
-                client.BussinessName = textBoxBussiness.Text;
+                client.Isbusiness = true;
+                client.businessName = textBoxbusiness.Text;
             }
             if(isNewClient)
             {
@@ -62,18 +62,18 @@ namespace AgendaMillVitreAuto
             this.Dispose();
         }
 
-        private void checkBoxIsBussiness_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxIsbusiness_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxIsBussiness.Checked == true)
+            if (checkBoxIsbusiness.Checked == true)
             {
-                textBoxBussiness.Enabled = true;
-                selectedClient.IsCompagnie = true;
+                textBoxbusiness.Enabled = true;
+                selectedClient.Isbusiness = true;
 
             }
-            else if (checkBoxIsBussiness.Checked == false)
+            else if (checkBoxIsbusiness.Checked == false)
             {
-                textBoxBussiness.Enabled = false;
-                selectedClient.IsCompagnie = false;
+                textBoxbusiness.Enabled = false;
+                selectedClient.Isbusiness = false;
             }
         }
     }
