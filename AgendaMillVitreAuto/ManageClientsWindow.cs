@@ -6,6 +6,7 @@ namespace AgendaMillVitreAuto
 {
     public partial class ManageClientsWindow : Form
     {
+        //TODO Optimize client and vehicle querry with a background worker and limit each querry to 1000 - 1500
         ModifyClientWindow modifyClientWindow;
         ModifyVehicleWindow modifyVehicleWindow;
         ManageAppointmentWindow manageAppointmentWindow;

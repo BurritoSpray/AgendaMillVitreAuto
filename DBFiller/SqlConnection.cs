@@ -11,7 +11,6 @@ namespace DBFiller
 {
     class SqlConnection
     {
-        //private static string connectionString = string.Empty;
         private MySqlConnection con;
         private string unformatedConnectionString = "server={0};database={1};uid={2};pwd={3}";
         private MySqlConnection Connection
@@ -25,8 +24,7 @@ namespace DBFiller
 
         public SqlConnection()
         {
-            //connectionString = string.Format(unformatedConnectionString, Settings.IP, Settings.DBNAME, Settings.USERNAME, Settings.PASSWORD);
-            //con = new MySqlConnection(connectionString);
+
         }
 
         //public string ConnectionString { get { return connectionString; } set { connectionString = value; } }
