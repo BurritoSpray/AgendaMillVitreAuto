@@ -124,7 +124,6 @@
             this.backgroundWorkerAddClient.WorkerReportsProgress = true;
             this.backgroundWorkerAddClient.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAddClient_DoWork);
             this.backgroundWorkerAddClient.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerAddClient_ProgressChanged);
-            this.backgroundWorkerAddClient.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerAddClient_RunWorkerCompleted);
             // 
             // buttonStart
             // 

@@ -127,10 +127,20 @@ namespace DBFiller
                                 {
                                     con.SendAddCommand(SqlCommands.AddClientCommand(splitedLine[0], splitedLine[1], splitedLine[2], splitedLine[3], "0"));
                                     decimal progress = 100m / (decimal)_lineCount * (decimal)lineCount;
-                                    backgroundWorkerAddClient.ReportProgress((int)progress + 1);
+                                    backgroundWorkerAddClient.ReportProgress((int)progress);
                                 }
                             }
                             lineCount++;
+                        }
+                        if (reader.EndOfStream)
+                        {
+                            backgroundWorkerAddClient.ReportProgress(100, true);
+                            MessageBox.Show("Operation completed", "Success");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Something went wrong!", "Error");
+                            backgroundWorkerAddClient.ReportProgress(0, true);
                         }
                     }
                 }
@@ -138,44 +148,19 @@ namespace DBFiller
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Connection error!");
-                bool result = false;
-                backgroundWorkerAddClient.ReportProgress(100, result);
+                backgroundWorkerAddClient.ReportProgress(100, false);
             }
         }
 
         private void backgroundWorkerAddClient_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBarWorker.Value = e.ProgressPercentage;
-            if (e.UserState != null)
+            if(e.UserState != null)
             {
-                if ((bool)e.UserState == false)
+                if((bool)e.UserState == true)
                 {
-                    backgroundWorkerAddClient_RunWorkerCompleted(this, new RunWorkerCompletedEventArgs(e.UserState, new Exception(), false));
+                    buttonClose.Enabled = true;
                 }
-            }
-        }
-
-        private void backgroundWorkerAddClient_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            try
-            {
-                if (e.Result != null)
-                {
-                    if ((bool)e.Result != false)
-                    {
-                        progressBarWorker.Value = 100;
-                        MessageBox.Show("Filling completed with success!", "success");
-                        buttonClose.Enabled = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("An error occured!", "Error");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
             }
         }
 
