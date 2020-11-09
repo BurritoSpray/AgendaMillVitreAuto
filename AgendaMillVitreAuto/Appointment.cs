@@ -10,6 +10,7 @@ namespace AgendaMillVitreAuto
 
     class Appointment
     {
+        private int appointmentID;
         private string mJob;
         private string mDescription;
         private Vehicle mVehicule;
@@ -27,6 +28,10 @@ namespace AgendaMillVitreAuto
             mClient = client;
             mVehicule = vehicle;
         }
+        public Appointment(DateTime date, string job, Client client, Vehicle vehicle, string description, int ID):this(date, job, client, vehicle, description)
+        {
+            appointmentID = ID;
+        }
 
         public string Job { get { return mJob; } set { mJob = value; } }
         public string Description { get { return mDescription; } set { mDescription = value; } }
@@ -34,6 +39,7 @@ namespace AgendaMillVitreAuto
         public Vehicle Vehicule { get { return mVehicule; } set { mVehicule = value; } }
         public DateTime Date { get { return mDate; } set { mDate = value; } }
         public bool isDone { get { return mIsDone; } set { mIsDone = value; } }
+        public int ID { get { return appointmentID; } }
 
     }
 }

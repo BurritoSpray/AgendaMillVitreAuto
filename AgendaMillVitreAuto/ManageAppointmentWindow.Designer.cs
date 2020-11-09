@@ -36,15 +36,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDownHeure = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownHour = new System.Windows.Forms.NumericUpDown();
             this.radioButtonHeureAM = new System.Windows.Forms.RadioButton();
             this.radioButtonHeurePM = new System.Windows.Forms.RadioButton();
             this.richTextBoxCommentaire = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.textBoxClient = new System.Windows.Forms.TextBox();
             this.textBoxVehicle = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeure)).BeginInit();
+            this.textBoxClient = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHour)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonAddAppointment
@@ -121,16 +121,16 @@
             // 
             // numericUpDownHeure
             // 
-            this.numericUpDownHeure.DecimalPlaces = 2;
-            this.numericUpDownHeure.Location = new System.Drawing.Point(61, 29);
-            this.numericUpDownHeure.Maximum = new decimal(new int[] {
+            this.numericUpDownHour.DecimalPlaces = 2;
+            this.numericUpDownHour.Location = new System.Drawing.Point(61, 29);
+            this.numericUpDownHour.Maximum = new decimal(new int[] {
             12,
             0,
             0,
             0});
-            this.numericUpDownHeure.Name = "numericUpDownHeure";
-            this.numericUpDownHeure.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDownHeure.TabIndex = 8;
+            this.numericUpDownHour.Name = "numericUpDownHeure";
+            this.numericUpDownHour.Size = new System.Drawing.Size(66, 20);
+            this.numericUpDownHour.TabIndex = 8;
             // 
             // radioButtonHeureAM
             // 
@@ -181,13 +181,6 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // textBoxClient
-            // 
-            this.textBoxClient.Location = new System.Drawing.Point(61, 77);
-            this.textBoxClient.Name = "textBoxClient";
-            this.textBoxClient.Size = new System.Drawing.Size(245, 20);
-            this.textBoxClient.TabIndex = 16;
-            // 
             // textBoxVehicle
             // 
             this.textBoxVehicle.Location = new System.Drawing.Point(61, 101);
@@ -195,19 +188,26 @@
             this.textBoxVehicle.Size = new System.Drawing.Size(245, 20);
             this.textBoxVehicle.TabIndex = 17;
             // 
+            // textBoxClient
+            // 
+            this.textBoxClient.Location = new System.Drawing.Point(61, 77);
+            this.textBoxClient.Name = "textBoxClient";
+            this.textBoxClient.Size = new System.Drawing.Size(245, 20);
+            this.textBoxClient.TabIndex = 18;
+            // 
             // ManageAppointmentWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(325, 337);
-            this.Controls.Add(this.textBoxVehicle);
             this.Controls.Add(this.textBoxClient);
+            this.Controls.Add(this.textBoxVehicle);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.richTextBoxCommentaire);
             this.Controls.Add(this.radioButtonHeurePM);
             this.Controls.Add(this.radioButtonHeureAM);
-            this.Controls.Add(this.numericUpDownHeure);
+            this.Controls.Add(this.numericUpDownHour);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label4);
@@ -220,7 +220,7 @@
             this.Text = "Ajouter un rendez-vous";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageAppointmentWindow_FormClosing);
             this.Load += new System.EventHandler(this.ManageAppointmentWindow_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeure)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHour)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,13 +236,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numericUpDownHeure;
+        private System.Windows.Forms.NumericUpDown numericUpDownHour;
         private System.Windows.Forms.RadioButton radioButtonHeureAM;
         private System.Windows.Forms.RadioButton radioButtonHeurePM;
         private System.Windows.Forms.RichTextBox richTextBoxCommentaire;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.TextBox textBoxClient;
         private System.Windows.Forms.TextBox textBoxVehicle;
+        private System.Windows.Forms.TextBox textBoxClient;
     }
 }

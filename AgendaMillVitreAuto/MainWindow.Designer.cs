@@ -32,9 +32,13 @@
             this.dateLabel = new System.Windows.Forms.Label();
             this.setDateLabel = new System.Windows.Forms.Label();
             this.dateUpdateWorker = new System.ComponentModel.BackgroundWorker();
-            this.buttonManageAppointment = new System.Windows.Forms.Button();
             this.comboBoxModeVue = new System.Windows.Forms.ComboBox();
             this.dataGrid = new System.Windows.Forms.DataGridView();
+            this.Hour = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Job = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBoxJobInfo = new System.Windows.Forms.RichTextBox();
@@ -42,20 +46,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerGrid = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.Hour = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Job = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonManageClients
             // 
             this.buttonManageClients.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonManageClients.Location = new System.Drawing.Point(12, 473);
+            this.buttonManageClients.Location = new System.Drawing.Point(12, 645);
             this.buttonManageClients.Name = "buttonManageClients";
-            this.buttonManageClients.Size = new System.Drawing.Size(178, 45);
+            this.buttonManageClients.Size = new System.Drawing.Size(326, 45);
             this.buttonManageClients.TabIndex = 0;
             this.buttonManageClients.Text = "Gerer liste de clients";
             this.buttonManageClients.UseVisualStyleBackColor = true;
@@ -88,17 +87,6 @@
             this.dateUpdateWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.dateUpdateWorker_DoWork);
             this.dateUpdateWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.dateUpdateWorker_ProgressChanged);
             // 
-            // buttonManageAppointment
-            // 
-            this.buttonManageAppointment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonManageAppointment.Location = new System.Drawing.Point(196, 473);
-            this.buttonManageAppointment.Name = "buttonManageAppointment";
-            this.buttonManageAppointment.Size = new System.Drawing.Size(178, 45);
-            this.buttonManageAppointment.TabIndex = 4;
-            this.buttonManageAppointment.Text = "Ajouter rendez-vous";
-            this.buttonManageAppointment.UseVisualStyleBackColor = true;
-            this.buttonManageAppointment.Click += new System.EventHandler(this.buttonManageAppointment_Click);
-            // 
             // comboBoxModeVue
             // 
             this.comboBoxModeVue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -107,13 +95,13 @@
             "Journée",
             "Semaine",
             "Mois"});
-            this.comboBoxModeVue.Location = new System.Drawing.Point(829, 487);
+            this.comboBoxModeVue.Location = new System.Drawing.Point(829, 659);
             this.comboBoxModeVue.Name = "comboBoxModeVue";
             this.comboBoxModeVue.Size = new System.Drawing.Size(121, 21);
             this.comboBoxModeVue.TabIndex = 5;
             this.comboBoxModeVue.SelectedIndexChanged += new System.EventHandler(this.comboBoxModeVue_SelectedIndexChanged);
             // 
-            // dataGridViewPlanning
+            // dataGrid
             // 
             this.dataGrid.AllowUserToAddRows = false;
             this.dataGrid.AllowUserToDeleteRows = false;
@@ -127,19 +115,54 @@
             this.dataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGrid.Location = new System.Drawing.Point(299, 12);
             this.dataGrid.MultiSelect = false;
-            this.dataGrid.Name = "dataGridViewPlanning";
+            this.dataGrid.Name = "dataGrid";
             this.dataGrid.ReadOnly = true;
+            this.dataGrid.RowHeadersVisible = false;
             this.dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGrid.ShowEditingIcon = false;
-            this.dataGrid.Size = new System.Drawing.Size(934, 455);
+            this.dataGrid.Size = new System.Drawing.Size(1125, 618);
             this.dataGrid.TabIndex = 6;
+            this.dataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellDoubleClick);
             this.dataGrid.SelectionChanged += new System.EventHandler(this.dataGridViewPlanning_SelectionChanged);
+            // 
+            // Hour
+            // 
+            this.Hour.HeaderText = "Heure";
+            this.Hour.Name = "Hour";
+            this.Hour.ReadOnly = true;
+            // 
+            // Job
+            // 
+            this.Job.HeaderText = "Job";
+            this.Job.Name = "Job";
+            this.Job.ReadOnly = true;
+            this.Job.Width = 150;
+            // 
+            // Client
+            // 
+            this.Client.HeaderText = "Client";
+            this.Client.Name = "Client";
+            this.Client.ReadOnly = true;
+            this.Client.Width = 200;
+            // 
+            // Phone
+            // 
+            this.Phone.HeaderText = "Téléphone";
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            // 
+            // Vehicle
+            // 
+            this.Vehicle.HeaderText = "Vehicule";
+            this.Vehicle.Name = "Vehicle";
+            this.Vehicle.ReadOnly = true;
+            this.Vehicle.Width = 150;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(715, 487);
+            this.label1.Location = new System.Drawing.Point(715, 659);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 20);
             this.label1.TabIndex = 9;
@@ -186,7 +209,7 @@
             // dateTimePickerGrid
             // 
             this.dateTimePickerGrid.CustomFormat = "";
-            this.dateTimePickerGrid.Location = new System.Drawing.Point(495, 489);
+            this.dateTimePickerGrid.Location = new System.Drawing.Point(495, 661);
             this.dateTimePickerGrid.Name = "dateTimePickerGrid";
             this.dateTimePickerGrid.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerGrid.TabIndex = 14;
@@ -196,50 +219,17 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(380, 489);
+            this.label4.Location = new System.Drawing.Point(380, 661);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(109, 20);
             this.label4.TabIndex = 15;
             this.label4.Text = "Date afficher: ";
             // 
-            // Hour
-            // 
-            this.Hour.HeaderText = "Heure";
-            this.Hour.Name = "Hour";
-            this.Hour.ReadOnly = true;
-            // 
-            // Job
-            // 
-            this.Job.HeaderText = "Job";
-            this.Job.Name = "Job";
-            this.Job.ReadOnly = true;
-            this.Job.Width = 150;
-            // 
-            // Client
-            // 
-            this.Client.HeaderText = "Client";
-            this.Client.Name = "Client";
-            this.Client.ReadOnly = true;
-            this.Client.Width = 200;
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Téléphone";
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            // 
-            // Vehicle
-            // 
-            this.Vehicle.HeaderText = "Vehicule";
-            this.Vehicle.Name = "Vehicle";
-            this.Vehicle.ReadOnly = true;
-            this.Vehicle.Width = 150;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1245, 530);
+            this.ClientSize = new System.Drawing.Size(1436, 702);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dateTimePickerGrid);
             this.Controls.Add(this.label3);
@@ -249,7 +239,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.comboBoxModeVue);
-            this.Controls.Add(this.buttonManageAppointment);
             this.Controls.Add(this.setDateLabel);
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.buttonManageClients);
@@ -271,7 +260,6 @@
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label setDateLabel;
         private System.ComponentModel.BackgroundWorker dateUpdateWorker;
-        private System.Windows.Forms.Button buttonManageAppointment;
         private System.Windows.Forms.ComboBox comboBoxModeVue;
         private System.Windows.Forms.DataGridView dataGrid;
         private System.Windows.Forms.Label label1;

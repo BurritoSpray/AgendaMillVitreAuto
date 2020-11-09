@@ -25,13 +25,23 @@ namespace AgendaMillVitreAuto
                 comboBoxJob.Items.Add(job);
             }
         }
+        //When you add an appointment from the ManageClientWindow
         public ManageAppointmentWindow(Object client, Object vehicle) : this()
         {
             selectedClient = client as Client;
             selectedVehicle = vehicle as Vehicle;
             textBoxClient.Text = selectedClient.FullName;
             textBoxVehicle.Text = selectedVehicle.Brand + " " + selectedVehicle.Model + " " + selectedVehicle.Color;
-
+        }
+        public ManageAppointmentWindow(Object appointment)
+        {
+            //TODO FIX THIS SHIT
+            Appointment ap = appointment as Appointment;
+            selectedClient = ap.Client;
+            selectedVehicle = ap.Vehicule;
+            dateTimePicker1.Value = ap.Date; //PROBLEME ICI
+            numericUpDownHour.Value = ap.Date.Hour;
+            //if(ap.Date.tim)
 
         }
         private DateTime formatDate()
@@ -42,11 +52,11 @@ namespace AgendaMillVitreAuto
                 decimal hour;
                 if(radioButtonHeurePM.Checked == true)
                 {
-                    hour = numericUpDownHeure.Value + 12;
+                    hour = numericUpDownHour.Value + 12;
                 }
                 else
                 {
-                    hour = numericUpDownHeure.Value;
+                    hour = numericUpDownHour.Value;
                 }
                 string formatedHour = hour.ToString().Replace('.', ':') + ":00";
                 DateTime newDate = DateTime.Parse(date + " " + formatedHour);
@@ -100,5 +110,6 @@ namespace AgendaMillVitreAuto
             con.InsertAppointment(new Appointment(formatDate(), comboBoxJob.Text, selectedClient, selectedVehicle, richTextBoxCommentaire.Text));
             this.Dispose();
         }
+
     }
 }

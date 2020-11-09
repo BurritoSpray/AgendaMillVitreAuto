@@ -48,6 +48,52 @@ namespace AgendaMillVitreAuto
         {
             con = new MySqlConnection(connectionString);
         }
+        public bool TestConnection()
+        {
+            try
+            {
+                con.Open();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public MySqlConnection Connection { get { return con; } }
+        //Retourne true si la connection est etablie
+        public bool Connect()
+        {
+            try
+            {
+                con.Open();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Connection error!\n" + ex.Message);
+                return false;
+
+            }
+        }
+        //Deconnecte du serveur
+        public bool Disconnect()
+        {
+            try
+            {
+                con.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Disconnect error!\n" + ex.Message);
+                return false;
+            }
+        }
         public List<Client> SelectClientsPrivate()
         {
             List<Client> clientsList = new List<Client>();
@@ -117,27 +163,27 @@ namespace AgendaMillVitreAuto
         }
         //Retourne l'ID du client a partir du nom et prenom
         //Peut etre a enlever
-        public int SelectUserID(string firstName, string secondName)
-        {
-            int ID = -1;
-            if(Connect() == true)
-            {
-                string selectUserIDFormated = string.Format(selectClientIDCommand,firstName,secondName);
-                MySqlCommand command = new MySqlCommand(selectUserIDFormated, Connection);
-                MySqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    ID = (int)reader["idclient"];
-                }
-                reader.Close();
-                Disconnect();
-                return ID;
-            }
-            else
-            {
-                return ID;
-            }
-        }
+        //public int SelectUserID(string firstName, string secondName)
+        //{
+        //    int ID = -1;
+        //    if(Connect() == true)
+        //    {
+        //        string selectUserIDFormated = string.Format(selectClientIDCommand,firstName,secondName);
+        //        MySqlCommand command = new MySqlCommand(selectUserIDFormated, Connection);
+        //        MySqlDataReader reader = command.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            ID = (int)reader["idclient"];
+        //        }
+        //        reader.Close();
+        //        Disconnect();
+        //        return ID;
+        //    }
+        //    else
+        //    {
+        //        return ID;
+        //    }
+        //}
         public void InsertNewClient(Client client)
         {
             string insertNewClientFormated = string.Empty;
@@ -302,7 +348,7 @@ namespace AgendaMillVitreAuto
                 while (reader.Read())
                 {
                     //ERREUR ICI A Cause que la connection est deja utiliser
-                    Appointment appointment = new Appointment(DateTime.Parse(reader["Date"].ToString()), reader["Job"].ToString(), new Client(int.Parse(reader["ClientID"].ToString())), new Vehicle(int.Parse(reader["VehicleID"].ToString())), reader["Description"].ToString());
+                    Appointment appointment = new Appointment(DateTime.Parse(reader["Date"].ToString()), reader["Job"].ToString(), new Client(int.Parse(reader["ClientID"].ToString())), new Vehicle(int.Parse(reader["VehicleID"].ToString())), reader["Description"].ToString(), int.Parse(reader["idappointment"].ToString()));
                     appointments.Add(appointment);
                 }
                 reader.Close();
@@ -396,51 +442,6 @@ namespace AgendaMillVitreAuto
             }
             return appointments;
         }
-        public void TestConnection()
-        {
-            try
-            {
-                con.Open();
-                MessageBox.Show("Connection Success", "Success");
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Connection error");
-            }
-            finally
-            {
-                con.Close();
-            }
-        }
-        public MySqlConnection Connection { get { return con; } }
-        //Retourne true si la connection est etablie
-        public bool Connect()
-        {
-            try
-            {
-                con.Open();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Connection error!\n" + ex.Message);
-                return false;
 
-            }
-        }
-        //Deconnecte du serveur
-        public bool Disconnect()
-        {
-            try
-            {
-                con.Close();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Disconnect error!\n" + ex.Message);
-                return false;
-            }
-        }
     }
 }

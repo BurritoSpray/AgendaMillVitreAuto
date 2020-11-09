@@ -14,9 +14,14 @@ namespace AgendaMillVitreAuto
         private Client selectedClient = new Client();
         private Vehicle selectedVehicle = new Vehicle();
         private bool isBussiness = false;
+
         public ManageClientsWindow()
         {
             InitializeComponent();
+        }
+        public ManageClientsWindow(bool isSelectMode)
+        {
+            
         }
         private void EnableVehicleInfoBox(bool state)
         {

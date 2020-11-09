@@ -41,9 +41,10 @@ namespace AgendaMillVitreAuto
             
 
         }
-
+        //set les valeur 
         private void setViewHoursValues(DataGridView dataGrid, DateTime date)
         {
+            //Obtient la liste de rendez-vous a partir du server
             appointments = new List<Appointment>();
             List<Appointment> tempAppointments = con.SelectAppointments();
             foreach(Appointment ap in tempAppointments)
@@ -53,17 +54,22 @@ namespace AgendaMillVitreAuto
                     appointments.Add(ap);
                 }
             }
+            int dataGridHeight = dataGrid.Height;
+            int dataGridWidth = dataGrid.Width + dataGrid.RowHeadersWidth;
             //Cree les colonnes
             dataGrid.Columns.Clear();
+            dataGrid.Columns.Add("AppointmentID", "ID");
+            dataGrid.Columns["AppointmentID"].Visible = false;
             dataGrid.Columns.Add("Hour", "Heure");
             dataGrid.Columns.Add("Job", "Job");
             dataGrid.Columns.Add("Client", "Client");
             dataGrid.Columns.Add("Phone", "Téléphone");
             dataGrid.Columns.Add("Vehicle", "Vehicule");
-            dataGrid.Columns[1].Width = 150;
-            dataGrid.Columns[2].Width = 200;
-            dataGrid.Columns[3].Width = 200;
-            dataGrid.Columns[4].Width = 200;
+            dataGrid.Columns["Hour"].Width = dataGridWidth /5;
+            dataGrid.Columns["Job"].Width = dataGridWidth /5;
+            dataGrid.Columns["Client"].Width = dataGridWidth /5;
+            dataGrid.Columns["Phone"].Width = dataGridWidth /5;
+            dataGrid.Columns["Vehicle"].Width = dataGridWidth /5;
             //Cree les ranger et ajoute les valeurs au cases
             int h = 7;
             DateTime[] dates = new DateTime[12];
@@ -77,11 +83,12 @@ namespace AgendaMillVitreAuto
             {
                 dataGrid.Rows.Add();
                 //dataGridViewPlanning[0, i].Value = string.Format("{0}:{1}", dates[i].Hour, dates[i].Minute.ToString(""));
-                dataGrid[0, i].Value = dates[i].ToString("HH:mm");
+                dataGrid["Hour", i].Value = dates[i].ToString("HH:mm");
                 foreach(Appointment ap in appointments)
                 {
                     if(ap.Date.Hour == dates[i].Hour)
                     {
+                        dataGrid["AppointmentID", i].Value = ap.ID;
                         dataGrid["Job", i].Value = ap.Job;
                         dataGrid["Client", i].Value = ap.Client.FullName;
                         dataGrid["Phone", i].Value = ap.Client.Phone;
@@ -113,9 +120,13 @@ namespace AgendaMillVitreAuto
         
         private void buttonManageClients_Click(object sender, EventArgs e)
         {
-            if(clientsWindow.IsDisposed == true){clientsWindow = new ManageClientsWindow();}
+            if(clientsWindow.IsDisposed == true){clientsWindow = new ManageClientsWindow();
+            }
             clientsWindow.Show();
         }
+
+
+        //Date Worker ---------------------------------------------------------------------------------
         //Mets a jour la data sur la fenetre principale
         private void dateUpdateWorker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -142,6 +153,9 @@ namespace AgendaMillVitreAuto
         {
             setDateLabel.Text = e.UserState.ToString();
         }
+        //----------------------------------------------------------------------------------------------
+
+
         //Ouvre la fenetre de gestion des rendez-vous
         private void buttonManageAppointment_Click(object sender, EventArgs e)
         {
@@ -199,7 +213,22 @@ namespace AgendaMillVitreAuto
             
         }
 
-
+        private void dataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (comboBoxModeVue.SelectedIndex == 0)
+            {
+                int selectedAppointmentID = int.Parse(dataGrid["AppointmentID", e.RowIndex].Value.ToString());
+                List<Appointment> tempAppointments = con.SelectAppointments();
+                foreach (Appointment ap in tempAppointments)
+                {
+                    if(ap.ID == selectedAppointmentID)
+                    {
+                        new ManageAppointmentWindow(ap).Show();
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     public static class DateTimeExtensions
