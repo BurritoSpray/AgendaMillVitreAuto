@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace AgendaMillVitreAuto
@@ -7,6 +8,7 @@ namespace AgendaMillVitreAuto
     public partial class ManageClientsWindow : Form
     {
         //TODO Optimize client and vehicle querry with a background worker and limit each querry to 1000 - 1500
+        //TODO Event clientListUpdate qui met a jour la liste de client quand la query a fini
         ModifyClientWindow modifyClientWindow;
         ModifyVehicleWindow modifyVehicleWindow;
         ManageAppointmentWindow manageAppointmentWindow;
@@ -89,19 +91,17 @@ namespace AgendaMillVitreAuto
 
         private void RefreshClients()
         {
-            //Filtre pour les clients priver et Entreprise
-            if (radioPrivate.Checked)
-            {
-                clientList = con.SelectClientsPrivate();
-            }
-            else if (radiobusiness.Checked)
-            {
-                clientList = con.SelectClientsbusiness();
-            }
-            else if(radioAll.Checked)
-            {
-                clientList = con.SelectClients();
-            }
+            BackgroundWorker refreshClientWorker = new BackgroundWorker();
+            refreshClientWorker.DoWork += RefreshClientWorker_DoWork;
+            refreshClientWorker.RunWorkerCompleted += RefreshClientWorker_RunWorkerCompleted;
+            refreshClientWorker.RunWorkerAsync();
+
+
+
+        }
+
+        private void RefreshClientWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
             //Writing the data from sql to infoGrid
             infoGrid.Rows.Clear();
             for (int i = 0; i <= clientList.Count - 1; i++)
@@ -119,8 +119,27 @@ namespace AgendaMillVitreAuto
             setSelectedClientInfo(false);
             setSelectedVehicleInfo(false);
             comboBoxVehicle.Items.Clear();
+
         }
-        
+
+        private void RefreshClientWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            con = new SqlConnection();
+            //Filtre pour les clients priver et Entreprise
+            if (radioPrivate.Checked)
+            {
+                clientList = con.SelectClientsPrivate();
+            }
+            else if (radiobusiness.Checked)
+            {
+                clientList = con.SelectClientsbusiness();
+            }
+            else if (radioAll.Checked)
+            {
+                clientList = con.SelectClients();
+            }
+        }
+
         private void setSelectedVehicleInfo(bool isEnabled)
         {
             if(selectedVehicle != null)
@@ -237,6 +256,7 @@ namespace AgendaMillVitreAuto
                 {
                     textBoxbusiness.Text = selectedClient.businessName;
                 }
+                selectedClient.VehicleList = con.SelectClientVehicles(selectedClient.ID);
                 //Clear selectedVehicle
                 selectedVehicle = new Vehicle();
                 //ComboBox Vehicle
@@ -455,6 +475,7 @@ namespace AgendaMillVitreAuto
                 //Si la textBox est vide effectue un refresh
                 if(textBoxSearch.Text == string.Empty)
                 {
+                    //TODO Fix search bar loop when erasing text it tryes to refresh like 100 times
                     RefreshClients();
                 }
             }

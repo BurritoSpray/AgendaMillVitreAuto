@@ -12,74 +12,75 @@ namespace AgendaMillVitreAuto
 {
     class Client
     {
-        private int mID;
-        private string mSecondName;
-        private string mFirstName;
-        private string mbusinessName = "";
-        private string mPhone;
-        private List<Vehicle> mVehicles = new List<Vehicle>();
-        private string mAddress;
-        private bool isbusiness = false;
+        private int _ID;
+        private string _SecondName;
+        private string _FirstName;
+        private string _BusinessName = "";
+        private string _Phone;
+        private List<Vehicle> _Vehicles = new List<Vehicle>();
+        private string _Address;
+        private bool _IsBusiness = false;
         private SqlConnection con = new SqlConnection();
         //Creation d'un client vide
         public Client()
         {
-            mID = -1;
-            mSecondName = "";
-            mFirstName = "";
-            mPhone = "";
-            mAddress = "";
+            _ID = -1;
+            _SecondName = "";
+            _FirstName = "";
+            _Phone = "";
+            _Address = "";
         }
         public Client(int clientID)
         {
             SqlConnection conn = new SqlConnection();
             Client client = conn.SelectClientInfo(clientID);
-            mFirstName = client.FirstName;
-            mSecondName = client.SecondName;
-            mAddress = client.Address;
-            mPhone = client.Phone;
-            mbusinessName = client.businessName;
-            mVehicles = client.VehicleList;
+            _FirstName = client.FirstName;
+            _SecondName = client.SecondName;
+            _Address = client.Address;
+            _Phone = client.Phone;
+            _BusinessName = client.businessName;
+            _Vehicles = client.VehicleList;
             Isbusiness = client.Isbusiness;
 
         }
         //Creation d'un client de base
        public Client(string ID, string nom, string prenom, string telephone, string addresse)
         {
-            mID = int.Parse(ID);
-            mSecondName = nom;
-            mFirstName = prenom;
-            mPhone = telephone;
-            mAddress = addresse;
-            mVehicles = con.SelectClientVehicles(mID);
+            _ID = int.Parse(ID);
+            _SecondName = nom;
+            _FirstName = prenom;
+            _Phone = telephone;
+            _Address = addresse;
+            //TODO trouver un moyen de charger dynamiquement la liste des vehicule parceque sinon sa ralentit considerablement le program...
+            //_Vehicles = con.SelectClientVehicles(_ID);
         }
         public Client(string ID, string secondName, string name, string phone, string address, string business) : this(ID, secondName, name, phone, address)
         {
-            mbusinessName = business;
-            isbusiness = true;
+            _BusinessName = business;
+            _IsBusiness = true;
         }
 
-        public int ID { get { return mID; } }
-        public bool Isbusiness{ get { return isbusiness; } set { isbusiness = value; } }
-        public string SecondName{ get { return mSecondName; } }
-        public string FirstName{ get { return mFirstName; } }
-        public string FullName{ get { return string.Format("{0} {1}", mFirstName, mSecondName); } }
-        public List<Vehicle> VehicleList{ get { return mVehicles; } }
-        public string Phone{ get { return mPhone; } }
-        public string Address{ get { return mAddress; } }
+        public int ID { get { return _ID; } }
+        public bool Isbusiness{ get { return _IsBusiness; } set { _IsBusiness = value; } }
+        public string SecondName{ get { return _SecondName; } }
+        public string FirstName{ get { return _FirstName; } }
+        public string FullName{ get { return string.Format("{0} {1}", _FirstName, _SecondName); } }
+        public List<Vehicle> VehicleList{ get { return _Vehicles; } set { _Vehicles = value; } }
+        public string Phone{ get { return _Phone; } }
+        public string Address{ get { return _Address; } }
         public string businessName { 
             get
             {
-                if (isbusiness == true)
+                if (_IsBusiness == true)
                 {
-                    return mbusinessName;
+                    return _BusinessName;
                 }
                 else
                 {
                     return "";
                 }
             }
-            set { mbusinessName = value; }
+            set { _BusinessName = value; }
         }
     }
 }

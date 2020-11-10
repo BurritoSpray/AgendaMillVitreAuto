@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -32,8 +33,8 @@ namespace AgendaMillVitreAuto
         private string deleteSelectedVehicleCommand = "DELETE vehicle.* FROM mill_vitre_auto.vehicle WHERE idvehicle = '{0}'";
         private string insertVehicleCommand = "INSERT INTO vehicle (clientID,brand,model,year,color,vehicleNumber) VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}')";
         private string updateVehicleCommand = "UPDATE vehicle SET brand = '{0}', model = '{1}', year = {2}, color = '{3}', vehicleNumber = '{4}' WHERE vehicle.idvehicle = {5}";
-        private string updateClientInfoCommand = "UPDATE client SET FirstName = '{0}', SecondName = '{1}', Phone = '{2}', Address = '{3}', isbusiness = '0' WHERE client.idclient = {4}";
-        private string updateBClientInfoCommand = "UPDATE client SET FirstName = '{0}', SecondName = '{1}', Phone = '{2}', Address = '{3}', Isbusiness = '1', business = '{4}' WHERE client.idclient = {5}";
+        private string updateClientInfoCommand = "UPDATE client SET FirstName = '{0}', SecondName = '{1}', Phone = '{2}', Address = '{3}', Isbusiness = '0' WHERE client.idclient = {4}";
+        private string updateBClientInfoCommand = "UPDATE client SET FirstName = '{0}', SecondName = '{1}', Phone = '{2}', Address = '{3}', Isbusiness = '1', BusinessName = '{4}' WHERE client.idclient = {5}";
         //--------------------------------------------------------------------------------------------------------------------------------
         //ManageAppointment Commands------------------------------------------------------------------------------------------------------
         private string insertAppointmentCommand = "INSERT INTO appointment SET Date='{0}', Job='{1}', ClientID='{2}', VehicleID='{3}', Description='{4}'";
@@ -48,6 +49,7 @@ namespace AgendaMillVitreAuto
         {
             con = new MySqlConnection(connectionString);
         }
+
         public bool TestConnection()
         {
             try
