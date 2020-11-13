@@ -15,7 +15,7 @@ namespace AgendaMillVitreAuto
     {
         //TODO: Ajouter des description de chaque fonction!!
         //LOGIN DU SERVEUR MYSQL--------------------------------------------------------------------------------------------------------
-        private string connectionString = "server=192.168.11.195;database=mill_vitre_auto;uid=program;pwd=Qazwsx2020!!;";
+        private string connectionString = "server=goy.ddns.net;database=mill_vitre_auto;uid=program;pwd=Qazwsx2020!!;";
         private MySqlConnection con;
         MySqlDateTime date;
         //MySql-DateTime-Format YYYY-MM-DD HH:MI:SS
@@ -59,7 +59,7 @@ namespace AgendaMillVitreAuto
             }
             catch (Exception ex)
             {
-                return false;
+                throw new Exception("Cant reach MySqlServer: " + connectionString.Split(';')[0]);
             }
             finally
             {
@@ -77,9 +77,8 @@ namespace AgendaMillVitreAuto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Connection error!\n" + ex.Message);
+                Console.WriteLine(ex.Message);
                 return false;
-
             }
         }
         //Deconnecte du serveur
@@ -349,7 +348,7 @@ namespace AgendaMillVitreAuto
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    //ERREUR ICI A Cause que la connection est deja utiliser
+                    //ERREUR ICI A Cause que la connection est deja utiliser probablement deja reparer mais pas sur...
                     Appointment appointment = new Appointment(DateTime.Parse(reader["Date"].ToString()), reader["Job"].ToString(), new Client(int.Parse(reader["ClientID"].ToString())), new Vehicle(int.Parse(reader["VehicleID"].ToString())), reader["Description"].ToString(), int.Parse(reader["idappointment"].ToString()));
                     appointments.Add(appointment);
                 }

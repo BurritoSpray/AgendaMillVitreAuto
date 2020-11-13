@@ -49,7 +49,7 @@
             this.buttonConfirm.Location = new System.Drawing.Point(16, 173);
             this.buttonConfirm.Name = "buttonConfirm";
             this.buttonConfirm.Size = new System.Drawing.Size(100, 40);
-            this.buttonConfirm.TabIndex = 35;
+            this.buttonConfirm.TabIndex = 6;
             this.buttonConfirm.Text = "Confirmer";
             this.buttonConfirm.UseVisualStyleBackColor = true;
             this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
@@ -59,7 +59,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(161, 173);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(100, 40);
-            this.buttonCancel.TabIndex = 34;
+            this.buttonCancel.TabIndex = 7;
             this.buttonCancel.Text = "Annuler";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -69,21 +69,21 @@
             this.textBoxColor.Location = new System.Drawing.Point(134, 90);
             this.textBoxColor.Name = "textBoxColor";
             this.textBoxColor.Size = new System.Drawing.Size(129, 20);
-            this.textBoxColor.TabIndex = 32;
+            this.textBoxColor.TabIndex = 3;
             // 
             // textBoxBrand
             // 
             this.textBoxBrand.Location = new System.Drawing.Point(134, 38);
             this.textBoxBrand.Name = "textBoxBrand";
             this.textBoxBrand.Size = new System.Drawing.Size(129, 20);
-            this.textBoxBrand.TabIndex = 30;
+            this.textBoxBrand.TabIndex = 1;
             // 
             // textBoxModel
             // 
             this.textBoxModel.Location = new System.Drawing.Point(134, 64);
             this.textBoxModel.Name = "textBoxModel";
             this.textBoxModel.Size = new System.Drawing.Size(129, 20);
-            this.textBoxModel.TabIndex = 29;
+            this.textBoxModel.TabIndex = 2;
             // 
             // labelYear
             // 
@@ -140,7 +140,7 @@
             this.textBoxVehicleNumber.Location = new System.Drawing.Point(134, 142);
             this.textBoxVehicleNumber.Name = "textBoxVehicleNumber";
             this.textBoxVehicleNumber.Size = new System.Drawing.Size(129, 20);
-            this.textBoxVehicleNumber.TabIndex = 37;
+            this.textBoxVehicleNumber.TabIndex = 5;
             // 
             // labelVehicleNumber
             // 
@@ -162,7 +162,7 @@
             0});
             this.numericUpDownYear.Name = "numericUpDownYear";
             this.numericUpDownYear.Size = new System.Drawing.Size(129, 20);
-            this.numericUpDownYear.TabIndex = 38;
+            this.numericUpDownYear.TabIndex = 4;
             this.numericUpDownYear.Value = new decimal(new int[] {
             2020,
             0,

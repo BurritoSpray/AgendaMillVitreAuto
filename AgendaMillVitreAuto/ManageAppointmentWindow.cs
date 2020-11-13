@@ -19,11 +19,6 @@ namespace AgendaMillVitreAuto
         public ManageAppointmentWindow()
         {
             InitializeComponent();
-            jobs = con.SelectJobs();
-            foreach(string job in jobs)
-            {
-                comboBoxJob.Items.Add(job);
-            }
         }
         //When you add an appointment from the ManageClientWindow
         public ManageAppointmentWindow(Object client, Object vehicle) : this()
@@ -33,7 +28,7 @@ namespace AgendaMillVitreAuto
             textBoxClient.Text = selectedClient.FullName;
             textBoxVehicle.Text = selectedVehicle.Brand + " " + selectedVehicle.Model + " " + selectedVehicle.Color;
         }
-        public ManageAppointmentWindow(Object appointment)
+        public ManageAppointmentWindow(Object appointment) : this()
         {
             //TODO FIX THIS SHIT
             Appointment ap = appointment as Appointment;
@@ -71,12 +66,11 @@ namespace AgendaMillVitreAuto
 
         private void ManageAppointmentWindow_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void addAppoitment(Appointment appointment)
-        {
-
+            jobs = con.SelectJobs();
+            foreach (string job in jobs)
+            {
+                comboBoxJob.Items.Add(job);
+            }
         }
 
         private void ManageAppointmentWindow_FormClosing(object sender, FormClosingEventArgs e)

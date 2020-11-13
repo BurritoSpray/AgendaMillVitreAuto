@@ -35,10 +35,24 @@ namespace AgendaMillVitreAuto
         //Demarre le worker au demarage du programme
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            dateUpdateWorker.RunWorkerAsync();
-            comboBoxModeVue.SelectedIndex = 0;
-            appointments = con.SelectAppointments();
-            
+            try
+            {
+                con.TestConnection();
+                dateUpdateWorker.RunWorkerAsync();
+                comboBoxModeVue.SelectedIndex = 0;
+                appointments = con.SelectAppointments();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Connection error!");
+                Thread.Sleep(5000);
+                this.Dispose();
+            } 
+
+        }
+        //Precharge les clients pour optimiser le program
+        private void loadClientList()
+        {
 
         }
         //set les valeur 
