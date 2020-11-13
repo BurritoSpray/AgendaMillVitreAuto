@@ -48,7 +48,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.buttonNewClient = new System.Windows.Forms.Button();
             this.radioPrivate = new System.Windows.Forms.RadioButton();
-            this.radiobusiness = new System.Windows.Forms.RadioButton();
+            this.radioBusiness = new System.Windows.Forms.RadioButton();
             this.buttonDeleteSelectedClient = new System.Windows.Forms.Button();
             this.buttonDeleteSelectedVehicle = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
@@ -60,6 +60,7 @@
             this.Telephone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Addresse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Business = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxVehicle = new System.Windows.Forms.ComboBox();
             this.labelYear = new System.Windows.Forms.Label();
@@ -105,67 +106,67 @@
             // 
             // textBoxSecondName
             // 
-            this.textBoxSecondName.Enabled = false;
             this.textBoxSecondName.Location = new System.Drawing.Point(105, 57);
             this.textBoxSecondName.Name = "textBoxSecondName";
+            this.textBoxSecondName.ReadOnly = true;
             this.textBoxSecondName.Size = new System.Drawing.Size(127, 20);
-            this.textBoxSecondName.TabIndex = 10;
+            this.textBoxSecondName.TabIndex = 2;
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Enabled = false;
             this.textBoxFirstName.Location = new System.Drawing.Point(105, 31);
             this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.ReadOnly = true;
             this.textBoxFirstName.Size = new System.Drawing.Size(127, 20);
-            this.textBoxFirstName.TabIndex = 11;
+            this.textBoxFirstName.TabIndex = 1;
             // 
             // textBoxbusiness
             // 
-            this.textBoxbusiness.Enabled = false;
             this.textBoxbusiness.Location = new System.Drawing.Point(105, 83);
             this.textBoxbusiness.Name = "textBoxbusiness";
+            this.textBoxbusiness.ReadOnly = true;
             this.textBoxbusiness.Size = new System.Drawing.Size(127, 20);
-            this.textBoxbusiness.TabIndex = 12;
+            this.textBoxbusiness.TabIndex = 3;
             // 
             // textBoxPhone
             // 
-            this.textBoxPhone.Enabled = false;
             this.textBoxPhone.Location = new System.Drawing.Point(105, 109);
             this.textBoxPhone.Name = "textBoxPhone";
+            this.textBoxPhone.ReadOnly = true;
             this.textBoxPhone.Size = new System.Drawing.Size(127, 20);
-            this.textBoxPhone.TabIndex = 13;
+            this.textBoxPhone.TabIndex = 4;
             // 
             // textBoxAddress
             // 
-            this.textBoxAddress.Enabled = false;
             this.textBoxAddress.Location = new System.Drawing.Point(105, 135);
             this.textBoxAddress.Name = "textBoxAddress";
+            this.textBoxAddress.ReadOnly = true;
             this.textBoxAddress.Size = new System.Drawing.Size(127, 20);
-            this.textBoxAddress.TabIndex = 14;
+            this.textBoxAddress.TabIndex = 5;
             // 
             // textBoxBrand
             // 
-            this.textBoxBrand.Enabled = false;
             this.textBoxBrand.Location = new System.Drawing.Point(105, 207);
             this.textBoxBrand.Name = "textBoxBrand";
+            this.textBoxBrand.ReadOnly = true;
             this.textBoxBrand.Size = new System.Drawing.Size(127, 20);
-            this.textBoxBrand.TabIndex = 16;
+            this.textBoxBrand.TabIndex = 7;
             // 
             // textBoxModel
             // 
-            this.textBoxModel.Enabled = false;
             this.textBoxModel.Location = new System.Drawing.Point(105, 233);
             this.textBoxModel.Name = "textBoxModel";
+            this.textBoxModel.ReadOnly = true;
             this.textBoxModel.Size = new System.Drawing.Size(127, 20);
-            this.textBoxModel.TabIndex = 17;
+            this.textBoxModel.TabIndex = 8;
             // 
             // textBoxColor
             // 
-            this.textBoxColor.Enabled = false;
             this.textBoxColor.Location = new System.Drawing.Point(105, 259);
             this.textBoxColor.Name = "textBoxColor";
+            this.textBoxColor.ReadOnly = true;
             this.textBoxColor.Size = new System.Drawing.Size(127, 20);
-            this.textBoxColor.TabIndex = 18;
+            this.textBoxColor.TabIndex = 9;
             // 
             // label3
             // 
@@ -242,7 +243,7 @@
             this.buttonNewClient.Location = new System.Drawing.Point(184, 324);
             this.buttonNewClient.Name = "buttonNewClient";
             this.buttonNewClient.Size = new System.Drawing.Size(179, 23);
-            this.buttonNewClient.TabIndex = 26;
+            this.buttonNewClient.TabIndex = 18;
             this.buttonNewClient.Text = "Nouveau Client";
             this.buttonNewClient.UseVisualStyleBackColor = true;
             this.buttonNewClient.Click += new System.EventHandler(this.buttonNewClient_Click);
@@ -254,29 +255,29 @@
             this.radioPrivate.Location = new System.Drawing.Point(247, 266);
             this.radioPrivate.Name = "radioPrivate";
             this.radioPrivate.Size = new System.Drawing.Size(70, 28);
-            this.radioPrivate.TabIndex = 28;
+            this.radioPrivate.TabIndex = 11;
             this.radioPrivate.Text = "Privé";
             this.radioPrivate.UseVisualStyleBackColor = true;
-            this.radioPrivate.CheckedChanged += new System.EventHandler(this.radioAll_CheckedChanged);
+            this.radioPrivate.Click += new System.EventHandler(this.radioPrivate_Click);
             // 
-            // radiobusiness
+            // radioBusiness
             // 
-            this.radiobusiness.AutoSize = true;
-            this.radiobusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radiobusiness.Location = new System.Drawing.Point(247, 290);
-            this.radiobusiness.Name = "radiobusiness";
-            this.radiobusiness.Size = new System.Drawing.Size(252, 28);
-            this.radiobusiness.TabIndex = 29;
-            this.radiobusiness.Text = "Commerce ou Compagnie";
-            this.radiobusiness.UseVisualStyleBackColor = true;
-            this.radiobusiness.CheckedChanged += new System.EventHandler(this.radioAll_CheckedChanged);
+            this.radioBusiness.AutoSize = true;
+            this.radioBusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioBusiness.Location = new System.Drawing.Point(247, 290);
+            this.radioBusiness.Name = "radioBusiness";
+            this.radioBusiness.Size = new System.Drawing.Size(252, 28);
+            this.radioBusiness.TabIndex = 12;
+            this.radioBusiness.Text = "Commerce ou Compagnie";
+            this.radioBusiness.UseVisualStyleBackColor = true;
+            this.radioBusiness.Click += new System.EventHandler(this.radioBusiness_Click);
             // 
             // buttonDeleteSelectedClient
             // 
             this.buttonDeleteSelectedClient.Location = new System.Drawing.Point(369, 324);
             this.buttonDeleteSelectedClient.Name = "buttonDeleteSelectedClient";
             this.buttonDeleteSelectedClient.Size = new System.Drawing.Size(193, 23);
-            this.buttonDeleteSelectedClient.TabIndex = 30;
+            this.buttonDeleteSelectedClient.TabIndex = 20;
             this.buttonDeleteSelectedClient.Text = "Effacer le client";
             this.buttonDeleteSelectedClient.UseVisualStyleBackColor = true;
             this.buttonDeleteSelectedClient.Click += new System.EventHandler(this.buttonDeleteSelectedClient_Click);
@@ -286,7 +287,7 @@
             this.buttonDeleteSelectedVehicle.Location = new System.Drawing.Point(369, 353);
             this.buttonDeleteSelectedVehicle.Name = "buttonDeleteSelectedVehicle";
             this.buttonDeleteSelectedVehicle.Size = new System.Drawing.Size(193, 23);
-            this.buttonDeleteSelectedVehicle.TabIndex = 31;
+            this.buttonDeleteSelectedVehicle.TabIndex = 21;
             this.buttonDeleteSelectedVehicle.Text = "Effacer le Véhicule";
             this.buttonDeleteSelectedVehicle.UseVisualStyleBackColor = true;
             this.buttonDeleteSelectedVehicle.Click += new System.EventHandler(this.buttonDeleteSelectedVehicle_Click);
@@ -296,7 +297,7 @@
             this.textBoxSearch.Location = new System.Drawing.Point(616, 263);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(158, 20);
-            this.textBoxSearch.TabIndex = 32;
+            this.textBoxSearch.TabIndex = 14;
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // label10
@@ -320,7 +321,7 @@
             this.comboBoxSearch.Location = new System.Drawing.Point(616, 284);
             this.comboBoxSearch.Name = "comboBoxSearch";
             this.comboBoxSearch.Size = new System.Drawing.Size(158, 21);
-            this.comboBoxSearch.TabIndex = 34;
+            this.comboBoxSearch.TabIndex = 15;
             this.comboBoxSearch.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearch_SelectedIndexChanged);
             // 
             // infoGrid
@@ -334,7 +335,8 @@
             this.Prenom,
             this.Telephone,
             this.Addresse,
-            this.ID});
+            this.ID,
+            this.Business});
             this.infoGrid.Location = new System.Drawing.Point(238, 12);
             this.infoGrid.MultiSelect = false;
             this.infoGrid.Name = "infoGrid";
@@ -345,24 +347,28 @@
             // 
             // Nom
             // 
+            this.Nom.Frozen = true;
             this.Nom.HeaderText = "Nom";
             this.Nom.Name = "Nom";
             this.Nom.ReadOnly = true;
             // 
             // Prenom
             // 
+            this.Prenom.Frozen = true;
             this.Prenom.HeaderText = "Prénom";
             this.Prenom.Name = "Prenom";
             this.Prenom.ReadOnly = true;
             // 
             // Telephone
             // 
+            this.Telephone.Frozen = true;
             this.Telephone.HeaderText = "Téléphone";
             this.Telephone.Name = "Telephone";
             this.Telephone.ReadOnly = true;
             // 
             // Addresse
             // 
+            this.Addresse.Frozen = true;
             this.Addresse.HeaderText = "Addresse";
             this.Addresse.Name = "Addresse";
             this.Addresse.ReadOnly = true;
@@ -374,6 +380,13 @@
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             this.ID.Visible = false;
+            // 
+            // Business
+            // 
+            this.Business.HeaderText = "IsBusiness";
+            this.Business.Name = "Business";
+            this.Business.ReadOnly = true;
+            this.Business.Visible = false;
             // 
             // label6
             // 
@@ -392,7 +405,7 @@
             this.comboBoxVehicle.Location = new System.Drawing.Point(105, 180);
             this.comboBoxVehicle.Name = "comboBoxVehicle";
             this.comboBoxVehicle.Size = new System.Drawing.Size(127, 21);
-            this.comboBoxVehicle.TabIndex = 38;
+            this.comboBoxVehicle.TabIndex = 6;
             this.comboBoxVehicle.SelectedIndexChanged += new System.EventHandler(this.comboBoxVehicle_SelectedIndexChanged);
             // 
             // labelYear
@@ -407,18 +420,18 @@
             // 
             // textBoxYear
             // 
-            this.textBoxYear.Enabled = false;
             this.textBoxYear.Location = new System.Drawing.Point(105, 285);
             this.textBoxYear.Name = "textBoxYear";
+            this.textBoxYear.ReadOnly = true;
             this.textBoxYear.Size = new System.Drawing.Size(127, 20);
-            this.textBoxYear.TabIndex = 39;
+            this.textBoxYear.TabIndex = 10;
             // 
             // buttonNewVehicle
             // 
             this.buttonNewVehicle.Location = new System.Drawing.Point(184, 353);
             this.buttonNewVehicle.Name = "buttonNewVehicle";
             this.buttonNewVehicle.Size = new System.Drawing.Size(179, 23);
-            this.buttonNewVehicle.TabIndex = 41;
+            this.buttonNewVehicle.TabIndex = 19;
             this.buttonNewVehicle.Text = "Nouveau Véhicule";
             this.buttonNewVehicle.UseVisualStyleBackColor = true;
             this.buttonNewVehicle.Click += new System.EventHandler(this.buttonNewVehicle_Click);
@@ -428,7 +441,7 @@
             this.buttonRefresh.Location = new System.Drawing.Point(149, 2);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(83, 23);
-            this.buttonRefresh.TabIndex = 43;
+            this.buttonRefresh.TabIndex = 23;
             this.buttonRefresh.Text = "Actualiser";
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
@@ -438,7 +451,7 @@
             this.buttonEditSelectedVehicle.Location = new System.Drawing.Point(12, 353);
             this.buttonEditSelectedVehicle.Name = "buttonEditSelectedVehicle";
             this.buttonEditSelectedVehicle.Size = new System.Drawing.Size(166, 23);
-            this.buttonEditSelectedVehicle.TabIndex = 45;
+            this.buttonEditSelectedVehicle.TabIndex = 17;
             this.buttonEditSelectedVehicle.Text = "Modifier le Véhicule";
             this.buttonEditSelectedVehicle.UseVisualStyleBackColor = true;
             this.buttonEditSelectedVehicle.Click += new System.EventHandler(this.buttonEditSelectedVehicle_Click);
@@ -448,7 +461,7 @@
             this.buttonEditSelectedClient.Location = new System.Drawing.Point(12, 324);
             this.buttonEditSelectedClient.Name = "buttonEditSelectedClient";
             this.buttonEditSelectedClient.Size = new System.Drawing.Size(166, 23);
-            this.buttonEditSelectedClient.TabIndex = 44;
+            this.buttonEditSelectedClient.TabIndex = 16;
             this.buttonEditSelectedClient.Text = "Modifier le client";
             this.buttonEditSelectedClient.UseVisualStyleBackColor = true;
             this.buttonEditSelectedClient.Click += new System.EventHandler(this.buttonEditSelectedClient_Click);
@@ -461,18 +474,18 @@
             this.radioAll.Location = new System.Drawing.Point(369, 266);
             this.radioAll.Name = "radioAll";
             this.radioAll.Size = new System.Drawing.Size(131, 28);
-            this.radioAll.TabIndex = 46;
+            this.radioAll.TabIndex = 13;
             this.radioAll.TabStop = true;
             this.radioAll.Text = "Afficher tous";
             this.radioAll.UseVisualStyleBackColor = true;
-            this.radioAll.CheckedChanged += new System.EventHandler(this.radioAll_CheckedChanged);
+            this.radioAll.Click += new System.EventHandler(this.radioAll_Click);
             // 
             // buttonAddAppointment
             // 
             this.buttonAddAppointment.Location = new System.Drawing.Point(581, 324);
             this.buttonAddAppointment.Name = "buttonAddAppointment";
             this.buttonAddAppointment.Size = new System.Drawing.Size(193, 23);
-            this.buttonAddAppointment.TabIndex = 47;
+            this.buttonAddAppointment.TabIndex = 22;
             this.buttonAddAppointment.Text = "Ajouter rendez-vous";
             this.buttonAddAppointment.UseVisualStyleBackColor = true;
             this.buttonAddAppointment.Click += new System.EventHandler(this.buttonAddAppointment_Click);
@@ -498,7 +511,7 @@
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.buttonDeleteSelectedVehicle);
             this.Controls.Add(this.buttonDeleteSelectedClient);
-            this.Controls.Add(this.radiobusiness);
+            this.Controls.Add(this.radioBusiness);
             this.Controls.Add(this.radioPrivate);
             this.Controls.Add(this.buttonNewClient);
             this.Controls.Add(this.label9);
@@ -551,7 +564,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button buttonNewClient;
         private System.Windows.Forms.RadioButton radioPrivate;
-        private System.Windows.Forms.RadioButton radiobusiness;
+        private System.Windows.Forms.RadioButton radioBusiness;
         private System.Windows.Forms.Button buttonDeleteSelectedClient;
         private System.Windows.Forms.Button buttonDeleteSelectedVehicle;
         private System.Windows.Forms.TextBox textBoxSearch;
@@ -566,13 +579,14 @@
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.Button buttonEditSelectedVehicle;
         private System.Windows.Forms.Button buttonEditSelectedClient;
+        private System.Windows.Forms.RadioButton radioAll;
+        private System.Windows.Forms.Button buttonAddAppointment;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prenom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telephone;
         private System.Windows.Forms.DataGridViewTextBoxColumn Addresse;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.RadioButton radioAll;
-        private System.Windows.Forms.Button buttonAddAppointment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Business;
     }
 }
 

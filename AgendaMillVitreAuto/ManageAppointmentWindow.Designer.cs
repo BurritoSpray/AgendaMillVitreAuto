@@ -52,7 +52,7 @@
             this.buttonAddAppointment.Location = new System.Drawing.Point(12, 283);
             this.buttonAddAppointment.Name = "buttonAddAppointment";
             this.buttonAddAppointment.Size = new System.Drawing.Size(131, 42);
-            this.buttonAddAppointment.TabIndex = 0;
+            this.buttonAddAppointment.TabIndex = 9;
             this.buttonAddAppointment.Text = "Ajouter";
             this.buttonAddAppointment.UseVisualStyleBackColor = true;
             this.buttonAddAppointment.Click += new System.EventHandler(this.buttonAddAppointment_Click);
@@ -72,7 +72,7 @@
             this.comboBoxJob.Location = new System.Drawing.Point(61, 52);
             this.comboBoxJob.Name = "comboBoxJob";
             this.comboBoxJob.Size = new System.Drawing.Size(245, 21);
-            this.comboBoxJob.TabIndex = 2;
+            this.comboBoxJob.TabIndex = 5;
             this.comboBoxJob.TextUpdate += new System.EventHandler(this.comboBoxJob_TextUpdate);
             // 
             // label2
@@ -107,7 +107,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(61, 5);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(245, 20);
-            this.dateTimePicker1.TabIndex = 6;
+            this.dateTimePicker1.TabIndex = 1;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label5
@@ -119,7 +119,7 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Heure: ";
             // 
-            // numericUpDownHeure
+            // numericUpDownHour
             // 
             this.numericUpDownHour.DecimalPlaces = 2;
             this.numericUpDownHour.Location = new System.Drawing.Point(61, 29);
@@ -128,9 +128,9 @@
             0,
             0,
             0});
-            this.numericUpDownHour.Name = "numericUpDownHeure";
+            this.numericUpDownHour.Name = "numericUpDownHour";
             this.numericUpDownHour.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDownHour.TabIndex = 8;
+            this.numericUpDownHour.TabIndex = 2;
             // 
             // radioButtonHeureAM
             // 
@@ -139,7 +139,7 @@
             this.radioButtonHeureAM.Location = new System.Drawing.Point(134, 31);
             this.radioButtonHeureAM.Name = "radioButtonHeureAM";
             this.radioButtonHeureAM.Size = new System.Drawing.Size(41, 17);
-            this.radioButtonHeureAM.TabIndex = 9;
+            this.radioButtonHeureAM.TabIndex = 3;
             this.radioButtonHeureAM.TabStop = true;
             this.radioButtonHeureAM.Text = "AM";
             this.radioButtonHeureAM.UseVisualStyleBackColor = true;
@@ -150,7 +150,7 @@
             this.radioButtonHeurePM.Location = new System.Drawing.Point(181, 31);
             this.radioButtonHeurePM.Name = "radioButtonHeurePM";
             this.radioButtonHeurePM.Size = new System.Drawing.Size(41, 17);
-            this.radioButtonHeurePM.TabIndex = 10;
+            this.radioButtonHeurePM.TabIndex = 4;
             this.radioButtonHeurePM.Text = "PM";
             this.radioButtonHeurePM.UseVisualStyleBackColor = true;
             // 
@@ -159,7 +159,7 @@
             this.richTextBoxCommentaire.Location = new System.Drawing.Point(12, 153);
             this.richTextBoxCommentaire.Name = "richTextBoxCommentaire";
             this.richTextBoxCommentaire.Size = new System.Drawing.Size(294, 124);
-            this.richTextBoxCommentaire.TabIndex = 11;
+            this.richTextBoxCommentaire.TabIndex = 8;
             this.richTextBoxCommentaire.Text = "";
             // 
             // label6
@@ -176,7 +176,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(175, 283);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(131, 42);
-            this.buttonCancel.TabIndex = 15;
+            this.buttonCancel.TabIndex = 10;
             this.buttonCancel.Text = "Annuler";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -186,14 +186,14 @@
             this.textBoxVehicle.Location = new System.Drawing.Point(61, 101);
             this.textBoxVehicle.Name = "textBoxVehicle";
             this.textBoxVehicle.Size = new System.Drawing.Size(245, 20);
-            this.textBoxVehicle.TabIndex = 17;
+            this.textBoxVehicle.TabIndex = 7;
             // 
             // textBoxClient
             // 
             this.textBoxClient.Location = new System.Drawing.Point(61, 77);
             this.textBoxClient.Name = "textBoxClient";
             this.textBoxClient.Size = new System.Drawing.Size(245, 20);
-            this.textBoxClient.TabIndex = 18;
+            this.textBoxClient.TabIndex = 6;
             // 
             // ManageAppointmentWindow
             // 

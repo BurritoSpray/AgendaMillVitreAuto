@@ -148,7 +148,7 @@ namespace AgendaMillVitreAuto
                     Client client = new Client(reader["idclient"].ToString(), reader["SecondName"].ToString(), reader["FirstName"].ToString(), reader["Phone"].ToString(), reader["Address"].ToString());
                     if (reader["Isbusiness"].ToString() == "1")
                     {
-                        client.Isbusiness = true;
+                        client.IsBusiness = true;
                         client.businessName = reader["businessName"].ToString();
                     }
                     clientList.Add(client);
@@ -188,12 +188,12 @@ namespace AgendaMillVitreAuto
         public void InsertNewClient(Client client)
         {
             string insertNewClientFormated = string.Empty;
-            if (client.Isbusiness == true)
+            if (client.IsBusiness == true)
             {
                 //insert business client
                 insertNewClientFormated = string.Format(insertNewBClient, client.FirstName, client.SecondName, client.Phone, client.Address, client.businessName);
             }
-            else if(client.Isbusiness == false)
+            else if(client.IsBusiness == false)
             {
                 insertNewClientFormated = string.Format(insertNewClient, client.FirstName, client.SecondName, client.Phone, client.Address);
             }
@@ -322,11 +322,11 @@ namespace AgendaMillVitreAuto
         public void UpdateClientInfo(Client client)
         {
             string updateClientInfoFormated;
-            if(client.Isbusiness == true)
+            if(client.IsBusiness == true)
             {
                 updateClientInfoFormated = string.Format(updateBClientInfoCommand, client.FirstName, client.SecondName, client.Phone, client.Address, client.businessName, client.ID);
             }
-            else if(client.Isbusiness == false)
+            else if(client.IsBusiness == false)
             {
                 updateClientInfoFormated = string.Format(updateClientInfoCommand, client.FirstName, client.SecondName, client.Phone, client.Address, client.ID);
             }

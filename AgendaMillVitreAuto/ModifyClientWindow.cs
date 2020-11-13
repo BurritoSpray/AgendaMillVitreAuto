@@ -26,7 +26,7 @@ namespace AgendaMillVitreAuto
             textBoxFirstName.Text = selectedClient.FirstName;
             textBoxPhone.Text = selectedClient.Phone;
             textBoxAddress.Text = selectedClient.Address;
-            if (selectedClient.Isbusiness)
+            if (selectedClient.IsBusiness)
             {
                 textBoxbusiness.Text = selectedClient.businessName;
             }
@@ -41,7 +41,7 @@ namespace AgendaMillVitreAuto
             Client client = new Client(selectedClient.ID.ToString(), textBoxSecondName.Text, textBoxFirstName.Text, textBoxPhone.Text, textBoxAddress.Text);
             if (checkBoxIsbusiness.Checked)
             {
-                client.Isbusiness = true;
+                client.IsBusiness = true;
                 client.businessName = textBoxbusiness.Text;
             }
             if(isNewClient)
@@ -67,13 +67,13 @@ namespace AgendaMillVitreAuto
             if (checkBoxIsbusiness.Checked == true)
             {
                 textBoxbusiness.Enabled = true;
-                selectedClient.Isbusiness = true;
+                selectedClient.IsBusiness = true;
 
             }
             else if (checkBoxIsbusiness.Checked == false)
             {
                 textBoxbusiness.Enabled = false;
-                selectedClient.Isbusiness = false;
+                selectedClient.IsBusiness = false;
             }
         }
     }

@@ -21,7 +21,7 @@ namespace AgendaMillVitreAuto
             InitializeComponent();
             selectedClient = client as Client;
             isNew = true;
-            if (selectedClient.Isbusiness)
+            if (selectedClient.IsBusiness)
             {
                 textBoxVehicleNumber.Enabled = true;
             }
@@ -41,12 +41,12 @@ namespace AgendaMillVitreAuto
             textBoxColor.Text = selectedVehicle.Color;
             textBoxModel.Text = selectedVehicle.Model;
             numericUpDownYear.Value = selectedVehicle.Year;
-            if(selectedClient.Isbusiness)
+            if(selectedClient.IsBusiness)
             {
                 textBoxVehicleNumber.Enabled = true;
                 textBoxVehicleNumber.Text = selectedVehicle.VehicleNumber;
             }
-            else if(selectedClient.Isbusiness == false)
+            else if(selectedClient.IsBusiness == false)
             {
                 textBoxVehicleNumber.Text = String.Empty;
                 textBoxVehicleNumber.Enabled = false;

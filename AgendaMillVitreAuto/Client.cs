@@ -40,7 +40,7 @@ namespace AgendaMillVitreAuto
             _Phone = client.Phone;
             _BusinessName = client.businessName;
             _Vehicles = client.VehicleList;
-            Isbusiness = client.Isbusiness;
+            IsBusiness = client.IsBusiness;
 
         }
         //Creation d'un client de base
@@ -61,7 +61,7 @@ namespace AgendaMillVitreAuto
         }
 
         public int ID { get { return _ID; } }
-        public bool Isbusiness{ get { return _IsBusiness; } set { _IsBusiness = value; } }
+        public bool IsBusiness{ get { return _IsBusiness; } set { _IsBusiness = value; } }
         public string SecondName{ get { return _SecondName; } }
         public string FirstName{ get { return _FirstName; } }
         public string FullName{ get { return string.Format("{0} {1}", _FirstName, _SecondName); } }
