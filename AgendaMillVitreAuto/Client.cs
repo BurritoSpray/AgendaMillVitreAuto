@@ -20,7 +20,6 @@ namespace AgendaMillVitreAuto
         private List<Vehicle> _Vehicles = new List<Vehicle>();
         private string _Address;
         private bool _IsBusiness = false;
-        private SqlConnection con = new SqlConnection();
         //Creation d'un client vide
         public Client()
         {

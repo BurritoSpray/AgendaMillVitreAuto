@@ -55,12 +55,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comboBoxSearch = new System.Windows.Forms.ComboBox();
             this.infoGrid = new System.Windows.Forms.DataGridView();
-            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telephone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Addresse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Business = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxVehicle = new System.Windows.Forms.ComboBox();
             this.labelYear = new System.Windows.Forms.Label();
@@ -329,64 +323,16 @@
             this.infoGrid.AllowUserToAddRows = false;
             this.infoGrid.AllowUserToDeleteRows = false;
             this.infoGrid.AllowUserToResizeRows = false;
+            this.infoGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.infoGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.infoGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nom,
-            this.Prenom,
-            this.Telephone,
-            this.Addresse,
-            this.ID,
-            this.Business});
             this.infoGrid.Location = new System.Drawing.Point(238, 12);
             this.infoGrid.MultiSelect = false;
             this.infoGrid.Name = "infoGrid";
             this.infoGrid.ReadOnly = true;
+            this.infoGrid.RowHeadersVisible = false;
             this.infoGrid.Size = new System.Drawing.Size(536, 247);
             this.infoGrid.TabIndex = 35;
             this.infoGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.infoGrid_CellClick);
-            // 
-            // Nom
-            // 
-            this.Nom.Frozen = true;
-            this.Nom.HeaderText = "Nom";
-            this.Nom.Name = "Nom";
-            this.Nom.ReadOnly = true;
-            // 
-            // Prenom
-            // 
-            this.Prenom.Frozen = true;
-            this.Prenom.HeaderText = "Prénom";
-            this.Prenom.Name = "Prenom";
-            this.Prenom.ReadOnly = true;
-            // 
-            // Telephone
-            // 
-            this.Telephone.Frozen = true;
-            this.Telephone.HeaderText = "Téléphone";
-            this.Telephone.Name = "Telephone";
-            this.Telephone.ReadOnly = true;
-            // 
-            // Addresse
-            // 
-            this.Addresse.Frozen = true;
-            this.Addresse.HeaderText = "Addresse";
-            this.Addresse.Name = "Addresse";
-            this.Addresse.ReadOnly = true;
-            this.Addresse.Width = 180;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // Business
-            // 
-            this.Business.HeaderText = "IsBusiness";
-            this.Business.Name = "Business";
-            this.Business.ReadOnly = true;
-            this.Business.Visible = false;
             // 
             // label6
             // 
@@ -581,12 +527,6 @@
         private System.Windows.Forms.Button buttonEditSelectedClient;
         private System.Windows.Forms.RadioButton radioAll;
         private System.Windows.Forms.Button buttonAddAppointment;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Prenom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telephone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Addresse;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Business;
     }
 }
 

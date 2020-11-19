@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Data;
 
 namespace AgendaMillVitreAuto
 {
@@ -14,8 +15,10 @@ namespace AgendaMillVitreAuto
         private List<Client> clientList = new List<Client>();
         private Client selectedClient = new Client();
         private Vehicle selectedVehicle = new Vehicle();
-        private bool isBusiness = true;
-        private bool isPrivate = true;
+        private DataTable clientDataTable = new DataTable("main");
+        private DataTable tempClientDataTable = new DataTable("temp");
+        private BindingSource clientDataTableBinding = new BindingSource();
+        private System.Windows.Forms.Timer searchBoxTimer = new System.Windows.Forms.Timer();
 
         public ManageClientsWindow()
         {
@@ -48,25 +51,25 @@ namespace AgendaMillVitreAuto
         private void RefreshClients()
         {
             BackgroundWorker loadClientsWorker = new BackgroundWorker();
-            loadClientsWorker.DoWork += LoadClientsWorker_DoWork;
-            loadClientsWorker.RunWorkerCompleted += LoadClientsWorker_RunWorkerCompleted;
+            loadClientsWorker.DoWork += RefreshClientsWorker_DoWork;
+            loadClientsWorker.RunWorkerCompleted += RefreshClientsWorker_RunWorkerCompleted;
             loadClientsWorker.RunWorkerAsync();
         }
 
-        private void LoadClientsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void RefreshClientsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //Writing the data from sql to infoGrid
-            textBoxSearch_TextChanged(this, new EventArgs());
             infoGrid.ClearSelection();
             selectedClient = new Client();
             selectedVehicle = new Vehicle();
             setSelectedClientInfo();
             setSelectedVehicleInfo();
             comboBoxVehicle.Items.Clear();
-
+            updateClientDataTable();
+            clientDataTableBinding.DataSource = clientDataTable;
         }
 
-        private void LoadClientsWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void RefreshClientsWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             con = new SqlConnection();
             clientList = con.SelectClients();
@@ -113,14 +116,162 @@ namespace AgendaMillVitreAuto
 
         private void ManageClientsWindow_Load(object sender, EventArgs e)
         {
+            //infoGrid.AutoGenerateColumns = false;
+            clientDataTable.Columns.Add("Nom");
+            clientDataTable.Columns.Add("Prenom");
+            clientDataTable.Columns.Add("Telephone");
+            clientDataTable.Columns.Add("Adresse");
+            clientDataTable.Columns.Add("ID");
+            clientDataTable.Columns.Add("Business");
+            infoGrid.DataSource = clientDataTableBinding;
+            clientDataTableBinding.DataSource = clientDataTable;
+            infoGrid.Columns["ID"].Visible = false;
+            infoGrid.Columns["Business"].Visible = false;
+            tempClientDataTable = clientDataTable.Clone();
+            tempClientDataTable.TableName = "temp";
             comboBoxSearch.SelectedIndex = 0;
             //Load client list
             RefreshClients();
             infoGrid.ClearSelection();
             selectedClient = new Client();
             selectedVehicle = new Vehicle();
+            setupSearchBoxTimer();
         }
-        
+        private void setupSearchBoxTimer()
+        {
+            searchBoxTimer = new System.Windows.Forms.Timer();
+            searchBoxTimer.Interval = 1200;
+            searchBoxTimer.Tick += SearchBoxTimer_Tick;
+        }
+
+        private void SearchBoxTimer_Tick(object sender, EventArgs e)
+        {
+            searchBoxTimer.Enabled = false;
+            RefreshClients();
+        }
+
+        private void textBoxSearch_TextChanged(Object sender, EventArgs e)
+        {
+
+            searchBoxTimer.Stop();
+            searchBoxTimer.Start();
+        }
+        //Affiche les resultat de la recherche chaque fois que le text est modifier
+        private void updateClientDataTable()
+        {
+            string clientType = string.Empty;
+            string searchBoxText = textBoxSearch.Text.ToLower();
+            if (radioAll.Checked)
+                clientType = "all";
+            else if (radioBusiness.Checked)
+                clientType = "business";
+            else if (radioPrivate.Checked)
+                clientType = "private";
+            tempClientDataTable.Rows.Clear();
+            
+            switch (clientType)
+            {
+                case "all":
+                    foreach (Client client in clientList)
+                    {
+                        if(searchBoxText != string.Empty)
+                        {
+                            switch (comboBoxSearch.SelectedIndex)
+                            {
+                                //FullName Search
+                                case 0:
+                                    if (client.FullName.ToLower().Contains(searchBoxText))
+                                        tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                                    break;
+                                //Phone Search
+                                case 1:
+                                    if(client.Phone.ToLower().Contains(searchBoxText))
+                                        tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                                    break;
+                                //Address Search
+                                case 2:
+                                    if(client.Address.ToLower().Contains(searchBoxText))
+                                        tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                                    break;
+                            }
+                        }
+                        else
+                            tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                    }
+                    break;
+                case "private":
+                    foreach(Client client in clientList)
+                    {
+                        if (!client.IsBusiness)
+                        {
+                            if (searchBoxText != string.Empty)
+                            {
+                                switch (comboBoxSearch.SelectedIndex)
+                                {
+                                    //FullName Search
+                                    case 0:
+                                        if (client.FullName.ToLower().Contains(searchBoxText))
+                                            tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                                        break;
+                                    //Phone Search
+                                    case 1:
+                                        if (client.Phone.ToLower().Contains(searchBoxText))
+                                            tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                                        break;
+                                    //Address Search
+                                    case 2:
+                                        if (client.Address.ToLower().Contains(searchBoxText))
+                                            tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                                        break;
+                                }
+                            }
+                            else
+                                tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                        }
+                    }
+                    break;
+                case "business":
+                    foreach(Client client in clientList)
+                    {
+                        if (client.IsBusiness)
+                        {
+                            if(textBoxSearch.Text != string.Empty)
+                            {
+                                switch (comboBoxSearch.SelectedIndex)
+                                {
+                                    default:
+                                        break;
+                                    //FullName Search
+                                    case 0:
+                                        if(client.FullName.ToLower().Contains(searchBoxText))
+                                            tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                                        break;
+                                    //Phone Search
+                                    case 1:
+                                        if(client.Phone.ToLower().Contains(searchBoxText))
+                                            tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                                        break;
+                                    //Address Search
+                                    case 2:
+                                        if(client.Address.ToLower().Contains(searchBoxText))
+                                            tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                                        break;
+                                }
+                            }
+                            else
+                                tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                        }
+                    }
+                    break;
+            }
+            clientDataTable = tempClientDataTable.Copy();
+        }
+
+        private void comboBoxSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateClientDataTable();
+        }
+
         private void ManageClientsWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             //e.Cancel = true;
@@ -218,15 +369,21 @@ namespace AgendaMillVitreAuto
             {
                 modifyClientWindow = new ModifyClientWindow(selectedClient, false);
                 var value = modifyClientWindow.ShowDialog();
-                selectedClient = con.SelectClientInfo(selectedClient.ID);
-                for (int i = 0; i <= infoGrid.Rows.Count-1; i++)
+                if(value == DialogResult.OK)
+                    selectedClient = con.SelectClientInfo(selectedClient.ID);
+                setSelectedClientInfo();
+                foreach(DataRow row in clientDataTable.Rows)
                 {
-                    if(infoGrid["ID",i].Value.ToString() == selectedClient.ID.ToString())
+                    if (selectedClient.ID.ToString() == row.Field<string>("ID"))
                     {
-
-                        editLine(selectedClient, i);
-                        infoGrid.Rows[i].Selected = true;
-                        setSelectedClientInfo();
+                        row["Nom"] = selectedClient.SecondName;
+                        row["Prenom"] = selectedClient.FirstName;
+                        row["Telephone"] = selectedClient.Phone;
+                        row["Adresse"] = selectedClient.Address;
+                        row["ID"] = selectedClient.ID;
+                        row["Business"] = selectedClient.IsBusiness;
+                        clientDataTableBinding.ResetBindings(false);
+                        break;
                     }
                 }
             }
@@ -279,145 +436,16 @@ namespace AgendaMillVitreAuto
             {
                 modifyVehicleWindow = new ModifyVehicleWindow(selectedVehicle, selectedClient);
                 var value = modifyVehicleWindow.ShowDialog();
-
+                if (value == DialogResult.OK)
+                {
+                    selectedVehicle = con.SelectVehicleInfo(selectedVehicle.ID);
+                    setSelectedVehicleInfo();
+                }
             }
             else
             {
                 ErrorMsg.ChooseVehicleError();
             }
-        }
-
-        //Affiche les resultat de la recherche chaque fois que le text est modifier
-        private void textBoxSearch_TextChanged(object sender, EventArgs e)
-        {
-            infoGrid.Rows.Clear();
-            //Si la textBox est vide effectue un refresh
-            if (textBoxSearch.Text == string.Empty)
-            {
-                //TODO Fix search bar loop when erasing text it tryes to refresh like 100 times
-                infoGrid.Rows.Clear();
-                for (int i = 0; i <= clientList.Count - 1; i++)
-                {
-                    addLine(clientList[i]);
-                }
-            }
-            else
-            {
-                //Passe tout les client de clientList
-                for (int i = 0; i <= clientList.Count - 1; i++)
-                {
-                    //Dependament de la selection de la comboBox affiche les match
-                    //Nom. prenom
-                    if (comboBoxSearch.SelectedIndex == 0)
-                    {
-                        if (clientList[i].FullName.ToLower().Contains(textBoxSearch.Text.ToLower()))
-                        {
-                            addLine(clientList[i]);
-                        }
-                    }
-                    //Recherche par Telephone
-                    else if (comboBoxSearch.SelectedIndex == 1)
-                    {
-                        if (clientList[i].Phone.ToLower().Contains(textBoxSearch.Text.ToLower()))
-                        {
-                            addLine(clientList[i]);
-                        }
-                    }
-                    //Recherche par Adresse
-                    else if (comboBoxSearch.SelectedIndex == 2)
-                    {
-                        if (clientList[i].Address.ToLower().Contains(textBoxSearch.Text.ToLower()))
-                        {
-                            addLine(clientList[i]);
-                        }
-                    }
-                }
-            }
-
-        }
-
-        private void addLine(Client client)
-        {
-            if (radioAll.Checked)
-            {
-                infoGrid.Rows.Add();
-                int lineNumber = infoGrid.Rows.Count - 1;
-                infoGrid["Nom", lineNumber].Value = client.SecondName;
-                infoGrid["Prenom", lineNumber].Value = client.FirstName;
-                infoGrid["Telephone", lineNumber].Value = client.Phone;
-                infoGrid["Addresse", lineNumber].Value = client.Address;
-                infoGrid["ID", lineNumber].Value = client.ID;
-                infoGrid["Business", lineNumber].Value = client.IsBusiness;
-            }
-            else if (radioBusiness.Checked)
-            {
-                if (client.IsBusiness)
-                {
-                    infoGrid.Rows.Add();
-                    int lineNumber = infoGrid.Rows.Count - 1;
-                    infoGrid["Nom", lineNumber].Value = client.SecondName;
-                    infoGrid["Prenom", lineNumber].Value = client.FirstName;
-                    infoGrid["Telephone", lineNumber].Value = client.Phone;
-                    infoGrid["Addresse", lineNumber].Value = client.Address;
-                    infoGrid["ID", lineNumber].Value = client.ID;
-                    infoGrid["Business", lineNumber].Value = client.IsBusiness;
-                }
-            }
-            else if (radioPrivate.Checked)
-            {
-                if (!client.IsBusiness)
-                {
-                    infoGrid.Rows.Add();
-                    int lineNumber = infoGrid.Rows.Count - 1;
-                    infoGrid["Nom", lineNumber].Value = client.SecondName;
-                    infoGrid["Prenom", lineNumber].Value = client.FirstName;
-                    infoGrid["Telephone", lineNumber].Value = client.Phone;
-                    infoGrid["Addresse", lineNumber].Value = client.Address;
-                    infoGrid["ID", lineNumber].Value = client.ID;
-                    infoGrid["Business", lineNumber].Value = client.IsBusiness;
-                }
-            }
-        }
-        private void editLine(Client client, int lineNumber)
-        {
-            if (radioAll.Checked)
-            {
-                infoGrid["Nom", lineNumber].Value = client.SecondName;
-                infoGrid["Prenom", lineNumber].Value = client.FirstName;
-                infoGrid["Telephone", lineNumber].Value = client.Phone;
-                infoGrid["Addresse", lineNumber].Value = client.Address;
-                infoGrid["ID", lineNumber].Value = client.ID;
-                infoGrid["Business", lineNumber].Value = client.IsBusiness;
-            }
-            else if (radioBusiness.Checked)
-            {
-                if (client.IsBusiness)
-                {
-                    infoGrid["Nom", lineNumber].Value = client.SecondName;
-                    infoGrid["Prenom", lineNumber].Value = client.FirstName;
-                    infoGrid["Telephone", lineNumber].Value = client.Phone;
-                    infoGrid["Addresse", lineNumber].Value = client.Address;
-                    infoGrid["ID", lineNumber].Value = client.ID;
-                    infoGrid["Business", lineNumber].Value = client.IsBusiness;
-                }
-            }
-            else if (radioPrivate.Checked)
-            {
-                if (!client.IsBusiness)
-                {
-                    infoGrid["Nom", lineNumber].Value = client.SecondName;
-                    infoGrid["Prenom", lineNumber].Value = client.FirstName;
-                    infoGrid["Telephone", lineNumber].Value = client.Phone;
-                    infoGrid["Addresse", lineNumber].Value = client.Address;
-                    infoGrid["ID", lineNumber].Value = client.ID;
-                    infoGrid["Business", lineNumber].Value = client.IsBusiness;
-                }
-            }
-        }
-
-        private void comboBoxSearch_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            textBoxSearch_TextChanged(sender, e);
         }
 
         private void buttonAddAppointment_Click(object sender, EventArgs e)
@@ -442,17 +470,17 @@ namespace AgendaMillVitreAuto
 
         private void radioAll_Click(object sender, EventArgs e)
         {
-            textBoxSearch_TextChanged(this, new EventArgs());
+            RefreshClients();
         }
 
         private void radioBusiness_Click(object sender, EventArgs e)
         {
-            textBoxSearch_TextChanged(this, new EventArgs());
+            RefreshClients();
         }
 
         private void radioPrivate_Click(object sender, EventArgs e)
         {
-            textBoxSearch_TextChanged(this, new EventArgs());
+            RefreshClients();
         }
     }
 }
