@@ -61,6 +61,7 @@
             this.buttonAddVehicle = new System.Windows.Forms.Button();
             this.buttonModifyVehicle = new System.Windows.Forms.Button();
             this.buttonDeleteVehicle = new System.Windows.Forms.Button();
+            this.buttonAddAppointment = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVehicleList)).BeginInit();
@@ -416,11 +417,22 @@
             this.buttonDeleteVehicle.UseVisualStyleBackColor = true;
             this.buttonDeleteVehicle.Click += new System.EventHandler(this.buttonDeleteVehicle_Click);
             // 
+            // buttonAddAppointment
+            // 
+            this.buttonAddAppointment.Location = new System.Drawing.Point(781, 383);
+            this.buttonAddAppointment.Name = "buttonAddAppointment";
+            this.buttonAddAppointment.Size = new System.Drawing.Size(254, 56);
+            this.buttonAddAppointment.TabIndex = 33;
+            this.buttonAddAppointment.Text = "Ajouter un rendez-vous";
+            this.buttonAddAppointment.UseVisualStyleBackColor = true;
+            this.buttonAddAppointment.Click += new System.EventHandler(this.buttonAddAppointment_Click);
+            // 
             // ModifyClientWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1053, 452);
+            this.Controls.Add(this.buttonAddAppointment);
             this.Controls.Add(this.buttonDeleteVehicle);
             this.Controls.Add(this.buttonModifyVehicle);
             this.Controls.Add(this.buttonAddVehicle);
@@ -477,5 +489,6 @@
         private System.Windows.Forms.Label labelVehicleColor;
         private System.Windows.Forms.Label labelVehicleBrand;
         private System.Windows.Forms.Label labelVehicleModel;
+        private System.Windows.Forms.Button buttonAddAppointment;
     }
 }

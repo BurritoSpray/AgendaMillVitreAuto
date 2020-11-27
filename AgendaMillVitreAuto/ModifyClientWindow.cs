@@ -12,8 +12,8 @@ namespace AgendaMillVitreAuto
 {
     public partial class ModifyClientWindow : Form
     {
-        private Client selectedClient;
-        private Vehicle selectedVehicle;
+        private Client selectedClient = new Client();
+        private Vehicle selectedVehicle = new Vehicle();
         private SqlConnection con = new SqlConnection();
         private DataTable vehicleDataTable = new DataTable();
         private BindingSource vehicleGridBinding = new BindingSource();
@@ -74,6 +74,7 @@ namespace AgendaMillVitreAuto
         private void VehicleGridWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             vehicleGridBinding.ResetBindings(false);
+            dataGridViewVehicleList.ClearSelection();
         }
 
         private void VehicleGridWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -89,7 +90,6 @@ namespace AgendaMillVitreAuto
             {
                 vehicleDataTable.Rows.Add(vehicle.Brand, vehicle.Model, vehicle.Color, vehicle.Year, vehicle.VehicleNumber, vehicle.ID);
             }
-
 
         }
 
@@ -205,6 +205,19 @@ namespace AgendaMillVitreAuto
                 isUpdateNeeded = true;
                 this.Close();
             }
+        }
+
+        private void buttonAddAppointment_Click(object sender, EventArgs e)
+        {
+            if (selectedClient.ID != -1 && selectedVehicle.ID != -1)
+            {
+                ManageAppointmentWindow appointmentWindow = new ManageAppointmentWindow(selectedClient, selectedVehicle);
+                var value = appointmentWindow.ShowDialog();
+                if (value == DialogResult.OK)
+                    this.Dispose();
+            }
+            else
+                ErrorMsg.ChooseVehicleError();
         }
     }
 }
