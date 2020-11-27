@@ -18,7 +18,8 @@ namespace AgendaMillVitreAuto
         private DataTable vehicleDataTable = new DataTable();
         private BindingSource vehicleGridBinding = new BindingSource();
         private BackgroundWorker vehicleGridWorker = new BackgroundWorker();
-        bool isNewClient;
+        private bool isNewClient;
+        private bool isUpdateNeeded = false;
         public ModifyClientWindow(Object client, bool newClient)
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace AgendaMillVitreAuto
             if (isNewClient) 
             { 
                 this.Text = "Nouveau Client";
+                isUpdateNeeded = true;
 
             }
             //labelModifyClient.Text += "  ID: " + selectedClient.ID.ToString();
@@ -55,6 +57,11 @@ namespace AgendaMillVitreAuto
             vehicleDataTable.Columns.Add("ID");
             dataGridViewVehicleList.DataSource = vehicleGridBinding;
             vehicleGridBinding.DataSource = vehicleDataTable;
+            dataGridViewVehicleList.Columns["Brand"].HeaderText = "Marque";
+            dataGridViewVehicleList.Columns["Model"].HeaderText = "Modèle";
+            dataGridViewVehicleList.Columns["Color"].HeaderText = "Couleur";
+            dataGridViewVehicleList.Columns["Year"].HeaderText = "Année";
+            dataGridViewVehicleList.Columns["VehicleNumber"].HeaderText = "Numero du vehicule";
             vehicleGridBinding.ResetBindings(true);
             if (!selectedClient.IsBusiness)
                 dataGridViewVehicleList.Columns["VehicleNumber"].Visible = false;
@@ -62,6 +69,7 @@ namespace AgendaMillVitreAuto
             vehicleGridWorker.RunWorkerAsync();
 
         }
+        public bool IsUpdateNeeded { get { return isUpdateNeeded; } }
 
         private void VehicleGridWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -156,6 +164,7 @@ namespace AgendaMillVitreAuto
             {
                 ModifyVehicleWindow vehicleWindow = new ModifyVehicleWindow(selectedVehicle, selectedClient);
                 var value = vehicleWindow.ShowDialog();
+                updateVehicleDataTable();
             }
             else
             {
@@ -172,9 +181,30 @@ namespace AgendaMillVitreAuto
 
         private void dataGridViewVehicleList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            dataGridViewVehicleList_CellClick(sender, e);
-            buttonModifyVehicle_Click(sender, new EventArgs());
+            if(e.RowIndex >= 0)
+            {
+                dataGridViewVehicleList_CellClick(sender, e);
+                buttonModifyVehicle_Click(sender, new EventArgs());
+            }
+        }
 
+        private void buttonDeleteVehicle_Click(object sender, EventArgs e)
+        {
+            var value = MessageBox.Show(string.Format("Êtes-vous sur de vouloir effacer {0}, {1}, {2}", selectedVehicle.Brand, selectedVehicle.Model, selectedVehicle.Color), "Attention!", MessageBoxButtons.YesNo);
+            if (value == DialogResult.Yes)
+                con.DeleteSelectedVehicle(selectedVehicle);
+            updateVehicleDataTable();
+        }
+
+        private void buttonDeleteClient_Click(object sender, EventArgs e)
+        {
+            var value = MessageBox.Show(string.Format("Êtes-vous sur de vouloir effacer le client, {0}", selectedClient.FullName), "Attention!", MessageBoxButtons.YesNo);
+            if (value == DialogResult.Yes)
+            {
+                con.DeleteSelectedClient(selectedClient);
+                isUpdateNeeded = true;
+                this.Close();
+            }
         }
     }
 }

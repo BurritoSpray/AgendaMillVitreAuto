@@ -29,7 +29,7 @@ namespace AgendaMillVitreAuto
         private string selectClientIDCommand = "SELECT client.idclient From client WHERE client.FirstName = '{0}' AND client.SecondName = '{1}'";
         private string selectClientInfoCommand = "SELECT client.* FROM client WHERE client.idclient = {0}";
         private string selectVehicleInfoCommand = "SELECT vehicle.* From vehicle where vehicle.idvehicle = {0}";
-        private string deleteSelectedClientCommand = "DELETE vehicle.* FROM mill_vitre_auto.vehicle WHERE vehicle.clientID = '0';DELETE client.* FROM mill_vitre_auto.client WHERE client.idclient = '{0}';";
+        private string deleteSelectedClientCommand = "DELETE vehicle.* FROM mill_vitre_auto.vehicle WHERE vehicle.clientID = '{0}';DELETE client.* FROM mill_vitre_auto.client WHERE client.idclient = '{0}';";
         private string deleteSelectedVehicleCommand = "DELETE vehicle.* FROM mill_vitre_auto.vehicle WHERE idvehicle = '{0}'";
         private string insertVehicleCommand = "INSERT INTO vehicle (clientID,brand,model,year,color,vehicleNumber) VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}')";
         private string updateVehicleCommand = "UPDATE vehicle SET brand = '{0}', model = '{1}', year = {2}, color = '{3}', vehicleNumber = '{4}' WHERE vehicle.idvehicle = {5}";
@@ -276,9 +276,9 @@ namespace AgendaMillVitreAuto
 
         }
         //Delete le client et tout ses vehicules
-        public void DeleteSelectedClient(int clientID)
+        public void DeleteSelectedClient(Client client)
         {
-            string deleteSelectedClientFormated = string.Format(deleteSelectedClientCommand, clientID);
+            string deleteSelectedClientFormated = string.Format(deleteSelectedClientCommand, client.ID);
             MySqlCommand command = new MySqlCommand(deleteSelectedClientFormated, Connection);
             if (Connect())
             {

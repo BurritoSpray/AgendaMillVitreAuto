@@ -352,7 +352,7 @@ namespace AgendaMillVitreAuto
                 if (value == DialogResult.Yes)
                 {
                     //Delete selectedClient
-                    con.DeleteSelectedClient(selectedClient.ID);
+                    con.DeleteSelectedClient(selectedClient);
                     selectedClient = new Client();
                     RefreshClients();
                     setSelectedClientInfo();
@@ -372,6 +372,9 @@ namespace AgendaMillVitreAuto
                 var value = modifyClientWindow.ShowDialog();
                 if(value == DialogResult.OK)
                     selectedClient = con.SelectClientInfo(selectedClient.ID);
+                if (modifyClientWindow.IsUpdateNeeded)
+                    RefreshClients();
+                modifyClientWindow.Dispose();
                 setSelectedClientInfo();
                 foreach(DataRow row in clientDataTable.Rows)
                 {
@@ -486,8 +489,11 @@ namespace AgendaMillVitreAuto
 
         private void infoGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            infoGrid_CellClick(sender, e);
-            buttonEditSelectedClient_Click(sender, new EventArgs());
+            if(e.RowIndex >= 0)
+            {
+                infoGrid_CellClick(sender, e);
+                buttonEditSelectedClient_Click(sender, new EventArgs());
+            }
         }
     }
 }

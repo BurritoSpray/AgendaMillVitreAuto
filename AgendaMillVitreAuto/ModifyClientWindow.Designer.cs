@@ -48,9 +48,6 @@
             this.groupBoxVehicleList = new System.Windows.Forms.GroupBox();
             this.groupBoxClientInfo = new System.Windows.Forms.GroupBox();
             this.groupBoxVehicleInfo = new System.Windows.Forms.GroupBox();
-            this.buttonAddVehicle = new System.Windows.Forms.Button();
-            this.buttonModifyVehicle = new System.Windows.Forms.Button();
-            this.buttonDeleteVehicle = new System.Windows.Forms.Button();
             this.numericUpDownVehicleYear = new System.Windows.Forms.NumericUpDown();
             this.textBoxVehicleNumber = new System.Windows.Forms.TextBox();
             this.labelVehicleNumber = new System.Windows.Forms.Label();
@@ -61,6 +58,9 @@
             this.labelVehicleColor = new System.Windows.Forms.Label();
             this.labelVehicleBrand = new System.Windows.Forms.Label();
             this.labelVehicleModel = new System.Windows.Forms.Label();
+            this.buttonAddVehicle = new System.Windows.Forms.Button();
+            this.buttonModifyVehicle = new System.Windows.Forms.Button();
+            this.buttonDeleteVehicle = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVehicleList)).BeginInit();
@@ -196,7 +196,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(286, 54);
             this.tableLayoutPanel1.TabIndex = 23;
             // 
@@ -217,6 +217,7 @@
             this.button1.TabIndex = 24;
             this.button1.Text = "Effacer le client";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonDeleteClient_Click);
             // 
             // dataGridViewVehicleList
             // 
@@ -284,34 +285,6 @@
             this.groupBoxVehicleInfo.TabIndex = 29;
             this.groupBoxVehicleInfo.TabStop = false;
             this.groupBoxVehicleInfo.Text = "Info du vehicule";
-            // 
-            // buttonAddVehicle
-            // 
-            this.buttonAddVehicle.Location = new System.Drawing.Point(319, 383);
-            this.buttonAddVehicle.Name = "buttonAddVehicle";
-            this.buttonAddVehicle.Size = new System.Drawing.Size(148, 56);
-            this.buttonAddVehicle.TabIndex = 30;
-            this.buttonAddVehicle.Text = "Nouveau Vehicule";
-            this.buttonAddVehicle.UseVisualStyleBackColor = true;
-            this.buttonAddVehicle.Click += new System.EventHandler(this.buttonAddVehicle_Click);
-            // 
-            // buttonModifyVehicle
-            // 
-            this.buttonModifyVehicle.Location = new System.Drawing.Point(473, 383);
-            this.buttonModifyVehicle.Name = "buttonModifyVehicle";
-            this.buttonModifyVehicle.Size = new System.Drawing.Size(148, 56);
-            this.buttonModifyVehicle.TabIndex = 31;
-            this.buttonModifyVehicle.Text = "Modifier le vehicule";
-            this.buttonModifyVehicle.UseVisualStyleBackColor = true;
-            // 
-            // buttonDeleteVehicle
-            // 
-            this.buttonDeleteVehicle.Location = new System.Drawing.Point(627, 383);
-            this.buttonDeleteVehicle.Name = "buttonDeleteVehicle";
-            this.buttonDeleteVehicle.Size = new System.Drawing.Size(148, 56);
-            this.buttonDeleteVehicle.TabIndex = 32;
-            this.buttonDeleteVehicle.Text = "Effacer le véhicule";
-            this.buttonDeleteVehicle.UseVisualStyleBackColor = true;
             // 
             // numericUpDownVehicleYear
             // 
@@ -412,6 +385,36 @@
             this.labelVehicleModel.Size = new System.Drawing.Size(65, 20);
             this.labelVehicleModel.TabIndex = 42;
             this.labelVehicleModel.Text = "Modèle:";
+            // 
+            // buttonAddVehicle
+            // 
+            this.buttonAddVehicle.Location = new System.Drawing.Point(319, 383);
+            this.buttonAddVehicle.Name = "buttonAddVehicle";
+            this.buttonAddVehicle.Size = new System.Drawing.Size(148, 56);
+            this.buttonAddVehicle.TabIndex = 30;
+            this.buttonAddVehicle.Text = "Nouveau Vehicule";
+            this.buttonAddVehicle.UseVisualStyleBackColor = true;
+            this.buttonAddVehicle.Click += new System.EventHandler(this.buttonAddVehicle_Click);
+            // 
+            // buttonModifyVehicle
+            // 
+            this.buttonModifyVehicle.Location = new System.Drawing.Point(473, 383);
+            this.buttonModifyVehicle.Name = "buttonModifyVehicle";
+            this.buttonModifyVehicle.Size = new System.Drawing.Size(148, 56);
+            this.buttonModifyVehicle.TabIndex = 31;
+            this.buttonModifyVehicle.Text = "Modifier le vehicule";
+            this.buttonModifyVehicle.UseVisualStyleBackColor = true;
+            this.buttonModifyVehicle.Click += new System.EventHandler(this.buttonModifyVehicle_Click);
+            // 
+            // buttonDeleteVehicle
+            // 
+            this.buttonDeleteVehicle.Location = new System.Drawing.Point(627, 383);
+            this.buttonDeleteVehicle.Name = "buttonDeleteVehicle";
+            this.buttonDeleteVehicle.Size = new System.Drawing.Size(148, 56);
+            this.buttonDeleteVehicle.TabIndex = 32;
+            this.buttonDeleteVehicle.Text = "Effacer le véhicule";
+            this.buttonDeleteVehicle.UseVisualStyleBackColor = true;
+            this.buttonDeleteVehicle.Click += new System.EventHandler(this.buttonDeleteVehicle_Click);
             // 
             // ModifyClientWindow
             // 
