@@ -15,7 +15,7 @@ namespace AgendaMillVitreAuto
     {
         //TODO: Ajouter des description de chaque fonction!!
         //LOGIN DU SERVEUR MYSQL--------------------------------------------------------------------------------------------------------
-        private string connectionString = "server=goy.ddns.net;database=mill_vitre_auto;uid=program;pwd=Qazwsx2020!!;";
+        private string connectionString = "server=ec2-18-220-146-6.us-east-2.compute.amazonaws.com;database=mill_vitre_auto;uid=program;pwd=Qazwsx2020!!;";
         private MySqlConnection con;
         MySqlDateTime date;
         //MySql-DateTime-Format YYYY-MM-DD HH:MI:SS
@@ -215,7 +215,10 @@ namespace AgendaMillVitreAuto
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    client = new Client(reader["idclient"].ToString(), reader["SecondName"].ToString(), reader["FirstName"].ToString(), reader["Phone"].ToString(), reader["Address"].ToString());
+                    if(reader["IsBusiness"].ToString() == "1")
+                        client = new Client(reader["idclient"].ToString(), reader["SecondName"].ToString(), reader["FirstName"].ToString(), reader["Phone"].ToString(), reader["Address"].ToString(), reader["BusinessName"].ToString());
+                    else
+                        client = new Client(reader["idclient"].ToString(), reader["SecondName"].ToString(), reader["FirstName"].ToString(), reader["Phone"].ToString(), reader["Address"].ToString());
                 }
                 reader.Close();
                 Disconnect();

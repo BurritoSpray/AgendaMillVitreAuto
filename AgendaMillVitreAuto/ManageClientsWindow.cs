@@ -99,6 +99,7 @@ namespace AgendaMillVitreAuto
                 textBoxSecondName.Text = selectedClient.SecondName;
                 textBoxPhone.Text = selectedClient.Phone;
                 textBoxAddress.Text = selectedClient.Address;
+                textBoxbusiness.Text = selectedClient.businessName;
             }
         }
         
@@ -269,7 +270,7 @@ namespace AgendaMillVitreAuto
 
         private void comboBoxSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            updateClientDataTable();
+            RefreshClients();
         }
 
         private void ManageClientsWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -285,14 +286,14 @@ namespace AgendaMillVitreAuto
                 selectedClient = clientList[e.RowIndex];
                 //Clear les textBox et cree l'objet Client selectedClient
                 ClearClientInfoBox();
-                for(int i = 0; i<= clientList.Count - 1; i++)
-                {
-                    if (clientList[i].ID == int.Parse(infoGrid["ID", e.RowIndex].Value.ToString()))
-                    {
-                        selectedClient = clientList[i];
-                    }
-                }
-                infoGrid.Rows[e.RowIndex].Selected = true;
+                //for(int i = 0; i<= clientList.Count - 1; i++)
+                //{
+                //    if (clientList[i].ID == int.Parse(infoGrid["ID", e.RowIndex].Value.ToString()))
+                //    {
+                //        selectedClient = clientList[i];
+                //    }
+                //}
+                selectedClient = con.SelectClientInfo(int.Parse(infoGrid["ID", e.RowIndex].Value.ToString()));
                 textBoxFirstName.Text = selectedClient.FirstName;
                 textBoxSecondName.Text = selectedClient.SecondName;
                 textBoxPhone.Text = selectedClient.Phone;
@@ -481,6 +482,12 @@ namespace AgendaMillVitreAuto
         private void radioPrivate_Click(object sender, EventArgs e)
         {
             RefreshClients();
+        }
+
+        private void infoGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            infoGrid_CellClick(sender, e);
+            buttonEditSelectedClient_Click(sender, new EventArgs());
         }
     }
 }

@@ -37,9 +37,9 @@ namespace AgendaMillVitreAuto
             selectedClient = client as Client;
             selectedVehicle = vehicle as Vehicle;
             isNew = false;
-            textBoxBrand.Text = selectedVehicle.Brand;
-            textBoxColor.Text = selectedVehicle.Color;
-            textBoxModel.Text = selectedVehicle.Model;
+            textBoxVehicleBrand.Text = selectedVehicle.Brand;
+            textBoxVehicleColor.Text = selectedVehicle.Color;
+            textBoxVehicleModel.Text = selectedVehicle.Model;
             numericUpDownYear.Value = selectedVehicle.Year;
             if(selectedClient.IsBusiness)
             {
@@ -57,12 +57,12 @@ namespace AgendaMillVitreAuto
         {
             if (isNew)
             {
-                Vehicle vehicle = new Vehicle(selectedClient.ID.ToString(), textBoxBrand.Text, textBoxModel.Text, textBoxColor.Text, numericUpDownYear.Value.ToString(), textBoxVehicleNumber.Text);
+                Vehicle vehicle = new Vehicle(selectedClient.ID.ToString(), textBoxVehicleBrand.Text, textBoxVehicleModel.Text, textBoxVehicleColor.Text, numericUpDownYear.Value.ToString(), textBoxVehicleNumber.Text);
                 con.InsertVehicle(vehicle);
             }
             else if(isNew == false)
             {
-                Vehicle vehicle = new Vehicle(selectedClient.ID.ToString(), selectedVehicle.ID.ToString(), textBoxBrand.Text, textBoxModel.Text, textBoxColor.Text, numericUpDownYear.Value.ToString(), textBoxVehicleNumber.Text);
+                Vehicle vehicle = new Vehicle(selectedClient.ID.ToString(), selectedVehicle.ID.ToString(), textBoxVehicleBrand.Text, textBoxVehicleModel.Text, textBoxVehicleColor.Text, numericUpDownYear.Value.ToString(), textBoxVehicleNumber.Text);
                 con.UpdateVehicle(vehicle);
             }
             this.DialogResult = DialogResult.OK;

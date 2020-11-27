@@ -30,13 +30,13 @@
         {
             this.buttonConfirm = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.textBoxColor = new System.Windows.Forms.TextBox();
-            this.textBoxBrand = new System.Windows.Forms.TextBox();
-            this.textBoxModel = new System.Windows.Forms.TextBox();
-            this.labelYear = new System.Windows.Forms.Label();
-            this.labelColor = new System.Windows.Forms.Label();
-            this.labelBrand = new System.Windows.Forms.Label();
-            this.labelModel = new System.Windows.Forms.Label();
+            this.textBoxVehicleColor = new System.Windows.Forms.TextBox();
+            this.textBoxVehicleBrand = new System.Windows.Forms.TextBox();
+            this.textBoxVehicleModel = new System.Windows.Forms.TextBox();
+            this.labelVehicleYear = new System.Windows.Forms.Label();
+            this.labelVehicleColor = new System.Windows.Forms.Label();
+            this.labelVehicleBrand = new System.Windows.Forms.Label();
+            this.labelVehicleModel = new System.Windows.Forms.Label();
             this.labelModifyVehicle = new System.Windows.Forms.Label();
             this.textBoxVehicleNumber = new System.Windows.Forms.TextBox();
             this.labelVehicleNumber = new System.Windows.Forms.Label();
@@ -64,66 +64,66 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // textBoxColor
+            // textBoxVehicleColor
             // 
-            this.textBoxColor.Location = new System.Drawing.Point(134, 90);
-            this.textBoxColor.Name = "textBoxColor";
-            this.textBoxColor.Size = new System.Drawing.Size(129, 20);
-            this.textBoxColor.TabIndex = 3;
+            this.textBoxVehicleColor.Location = new System.Drawing.Point(134, 90);
+            this.textBoxVehicleColor.Name = "textBoxVehicleColor";
+            this.textBoxVehicleColor.Size = new System.Drawing.Size(129, 20);
+            this.textBoxVehicleColor.TabIndex = 3;
             // 
-            // textBoxBrand
+            // textBoxVehicleBrand
             // 
-            this.textBoxBrand.Location = new System.Drawing.Point(134, 38);
-            this.textBoxBrand.Name = "textBoxBrand";
-            this.textBoxBrand.Size = new System.Drawing.Size(129, 20);
-            this.textBoxBrand.TabIndex = 1;
+            this.textBoxVehicleBrand.Location = new System.Drawing.Point(134, 38);
+            this.textBoxVehicleBrand.Name = "textBoxVehicleBrand";
+            this.textBoxVehicleBrand.Size = new System.Drawing.Size(129, 20);
+            this.textBoxVehicleBrand.TabIndex = 1;
             // 
-            // textBoxModel
+            // textBoxVehicleModel
             // 
-            this.textBoxModel.Location = new System.Drawing.Point(134, 64);
-            this.textBoxModel.Name = "textBoxModel";
-            this.textBoxModel.Size = new System.Drawing.Size(129, 20);
-            this.textBoxModel.TabIndex = 2;
+            this.textBoxVehicleModel.Location = new System.Drawing.Point(134, 64);
+            this.textBoxVehicleModel.Name = "textBoxVehicleModel";
+            this.textBoxVehicleModel.Size = new System.Drawing.Size(129, 20);
+            this.textBoxVehicleModel.TabIndex = 2;
             // 
-            // labelYear
+            // labelVehicleYear
             // 
-            this.labelYear.AutoSize = true;
-            this.labelYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelYear.Location = new System.Drawing.Point(12, 114);
-            this.labelYear.Name = "labelYear";
-            this.labelYear.Size = new System.Drawing.Size(60, 20);
-            this.labelYear.TabIndex = 28;
-            this.labelYear.Text = "Année:";
+            this.labelVehicleYear.AutoSize = true;
+            this.labelVehicleYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVehicleYear.Location = new System.Drawing.Point(12, 114);
+            this.labelVehicleYear.Name = "labelVehicleYear";
+            this.labelVehicleYear.Size = new System.Drawing.Size(60, 20);
+            this.labelVehicleYear.TabIndex = 28;
+            this.labelVehicleYear.Text = "Année:";
             // 
-            // labelColor
+            // labelVehicleColor
             // 
-            this.labelColor.AutoSize = true;
-            this.labelColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelColor.Location = new System.Drawing.Point(12, 88);
-            this.labelColor.Name = "labelColor";
-            this.labelColor.Size = new System.Drawing.Size(68, 20);
-            this.labelColor.TabIndex = 27;
-            this.labelColor.Text = "Couleur:";
+            this.labelVehicleColor.AutoSize = true;
+            this.labelVehicleColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVehicleColor.Location = new System.Drawing.Point(12, 88);
+            this.labelVehicleColor.Name = "labelVehicleColor";
+            this.labelVehicleColor.Size = new System.Drawing.Size(68, 20);
+            this.labelVehicleColor.TabIndex = 27;
+            this.labelVehicleColor.Text = "Couleur:";
             // 
-            // labelBrand
+            // labelVehicleBrand
             // 
-            this.labelBrand.AutoSize = true;
-            this.labelBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBrand.Location = new System.Drawing.Point(12, 36);
-            this.labelBrand.Name = "labelBrand";
-            this.labelBrand.Size = new System.Drawing.Size(67, 20);
-            this.labelBrand.TabIndex = 25;
-            this.labelBrand.Text = "Marque:";
+            this.labelVehicleBrand.AutoSize = true;
+            this.labelVehicleBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVehicleBrand.Location = new System.Drawing.Point(12, 36);
+            this.labelVehicleBrand.Name = "labelVehicleBrand";
+            this.labelVehicleBrand.Size = new System.Drawing.Size(67, 20);
+            this.labelVehicleBrand.TabIndex = 25;
+            this.labelVehicleBrand.Text = "Marque:";
             // 
-            // labelModel
+            // labelVehicleModel
             // 
-            this.labelModel.AutoSize = true;
-            this.labelModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelModel.Location = new System.Drawing.Point(12, 62);
-            this.labelModel.Name = "labelModel";
-            this.labelModel.Size = new System.Drawing.Size(65, 20);
-            this.labelModel.TabIndex = 24;
-            this.labelModel.Text = "Modèle:";
+            this.labelVehicleModel.AutoSize = true;
+            this.labelVehicleModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVehicleModel.Location = new System.Drawing.Point(12, 62);
+            this.labelVehicleModel.Name = "labelVehicleModel";
+            this.labelVehicleModel.Size = new System.Drawing.Size(65, 20);
+            this.labelVehicleModel.TabIndex = 24;
+            this.labelVehicleModel.Text = "Modèle:";
             // 
             // labelModifyVehicle
             // 
@@ -179,13 +179,13 @@
             this.Controls.Add(this.labelVehicleNumber);
             this.Controls.Add(this.buttonConfirm);
             this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.textBoxColor);
-            this.Controls.Add(this.textBoxBrand);
-            this.Controls.Add(this.textBoxModel);
-            this.Controls.Add(this.labelYear);
-            this.Controls.Add(this.labelColor);
-            this.Controls.Add(this.labelBrand);
-            this.Controls.Add(this.labelModel);
+            this.Controls.Add(this.textBoxVehicleColor);
+            this.Controls.Add(this.textBoxVehicleBrand);
+            this.Controls.Add(this.textBoxVehicleModel);
+            this.Controls.Add(this.labelVehicleYear);
+            this.Controls.Add(this.labelVehicleColor);
+            this.Controls.Add(this.labelVehicleBrand);
+            this.Controls.Add(this.labelVehicleModel);
             this.Controls.Add(this.labelModifyVehicle);
             this.Name = "ModifyVehicleWindow";
             this.Text = "ModifyVehicleWindow";
@@ -198,13 +198,13 @@
         #endregion
         private System.Windows.Forms.Button buttonConfirm;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.TextBox textBoxColor;
-        private System.Windows.Forms.TextBox textBoxBrand;
-        private System.Windows.Forms.TextBox textBoxModel;
-        private System.Windows.Forms.Label labelYear;
-        private System.Windows.Forms.Label labelColor;
-        private System.Windows.Forms.Label labelBrand;
-        private System.Windows.Forms.Label labelModel;
+        private System.Windows.Forms.TextBox textBoxVehicleColor;
+        private System.Windows.Forms.TextBox textBoxVehicleBrand;
+        private System.Windows.Forms.TextBox textBoxVehicleModel;
+        private System.Windows.Forms.Label labelVehicleYear;
+        private System.Windows.Forms.Label labelVehicleColor;
+        private System.Windows.Forms.Label labelVehicleBrand;
+        private System.Windows.Forms.Label labelVehicleModel;
         private System.Windows.Forms.Label labelModifyVehicle;
         private System.Windows.Forms.TextBox textBoxVehicleNumber;
         private System.Windows.Forms.Label labelVehicleNumber;
