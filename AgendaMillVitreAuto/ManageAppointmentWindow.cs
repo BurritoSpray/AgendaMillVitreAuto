@@ -85,6 +85,7 @@ namespace AgendaMillVitreAuto
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -102,6 +103,7 @@ namespace AgendaMillVitreAuto
         private void buttonAddAppointment_Click(object sender, EventArgs e)
         {
             con.InsertAppointment(new Appointment(formatDate(), comboBoxJob.Text, selectedClient, selectedVehicle, richTextBoxCommentaire.Text));
+            this.DialogResult = DialogResult.OK;
             this.Dispose();
         }
 
