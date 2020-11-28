@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Net.Sockets;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Threading;
+using System.Windows.Forms;
 /*
  * Charger les rendez-vous en une commande selon les dates selectioner
  * Ensuite faire un loop pour faire matcher avec les date selectionner a lecran
@@ -20,14 +14,13 @@ using System.Diagnostics;
  */
 namespace AgendaMillVitreAuto
 {
-    
+
     public partial class MainWindow : Form
     {
         private ManageClientsWindow clientsWindow = new ManageClientsWindow();
         private ManageAppointmentWindow appointmentWindow = new ManageAppointmentWindow();
-        private List<Appointment> appointments;
+        private List<Appointment> appointments = new List<Appointment>();
         private SqlConnection con = new SqlConnection();
-        //private Socket socket = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
         public MainWindow()
         {
             InitializeComponent();
@@ -48,11 +41,6 @@ namespace AgendaMillVitreAuto
                 Thread.Sleep(5000);
                 this.Dispose();
             } 
-
-        }
-        //Precharge les clients pour optimiser le program
-        private void loadClientList()
-        {
 
         }
         //set les valeur 
