@@ -28,6 +28,7 @@ namespace AgendaMillVitreAuto
         private string selectClientVehiclesCommand = "SELECT vehicle.* FROM mill_vitre_auto.vehicle WHERE clientID = {0}";
         private string selectClientIDCommand = "SELECT client.idclient From client WHERE client.FirstName = '{0}' AND client.SecondName = '{1}'";
         private string selectClientInfoCommand = "SELECT client.* FROM client WHERE client.idclient = {0}";
+        private string selectLastAddedClientCommand = "SELECT * FROM mill_vitre_auto.client WHERE idclient=(SELECT MAX(idclient) FROM mill_vitre_auto.client)";
         private string selectVehicleInfoCommand = "SELECT vehicle.* From vehicle where vehicle.idvehicle = {0}";
         private string deleteSelectedClientCommand = "DELETE vehicle.* FROM mill_vitre_auto.vehicle WHERE vehicle.clientID = '{0}';DELETE client.* FROM mill_vitre_auto.client WHERE client.idclient = '{0}';";
         private string deleteSelectedVehicleCommand = "DELETE vehicle.* FROM mill_vitre_auto.vehicle WHERE idvehicle = '{0}'";
@@ -149,7 +150,7 @@ namespace AgendaMillVitreAuto
                     if (reader["Isbusiness"].ToString() == "1")
                     {
                         client.IsBusiness = true;
-                        client.businessName = reader["businessName"].ToString();
+                        client.BusinessName = reader["businessName"].ToString();
                     }
                     clientList.Add(client);
                 }
@@ -162,36 +163,41 @@ namespace AgendaMillVitreAuto
                 return clientList;
             }
         }
-        //Retourne l'ID du client a partir du nom et prenom
-        //Peut etre a enlever
-        //public int SelectUserID(string firstName, string secondName)
-        //{
-        //    int ID = -1;
-        //    if(Connect() == true)
-        //    {
-        //        string selectUserIDFormated = string.Format(selectClientIDCommand,firstName,secondName);
-        //        MySqlCommand command = new MySqlCommand(selectUserIDFormated, Connection);
-        //        MySqlDataReader reader = command.ExecuteReader();
-        //        while (reader.Read())
-        //        {
-        //            ID = (int)reader["idclient"];
-        //        }
-        //        reader.Close();
-        //        Disconnect();
-        //        return ID;
-        //    }
-        //    else
-        //    {
-        //        return ID;
-        //    }
-        //}
+
+        public Client SelectLastAddedClient()
+        {
+            MySqlCommand command = new MySqlCommand(selectLastAddedClientCommand, Connection);
+            Client client = new Client();
+            if (Connect())
+            {
+
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    client = new Client(reader["idclient"].ToString(), reader["SecondName"].ToString(), reader["FirstName"].ToString(), reader["Phone"].ToString(), reader["Address"].ToString());
+                    if (reader["IsBussiness"].ToString() == "1")
+                    {
+                        client.IsBusiness = true;
+                        client.BusinessName = reader["BusinessName"].ToString();
+                    }
+                }
+                Disconnect();
+                reader.Close();
+                return client;
+            }
+            else
+            {
+                return client;
+            }
+        }
+
         public void InsertNewClient(Client client)
         {
             string insertNewClientFormated = string.Empty;
             if (client.IsBusiness == true)
             {
                 //insert business client
-                insertNewClientFormated = string.Format(insertNewBClient, client.FirstName, client.SecondName, client.Phone, client.Address, client.businessName);
+                insertNewClientFormated = string.Format(insertNewBClient, client.FirstName, client.SecondName, client.Phone, client.Address, client.BusinessName);
             }
             else if(client.IsBusiness == false)
             {
@@ -327,7 +333,7 @@ namespace AgendaMillVitreAuto
             string updateClientInfoFormated;
             if(client.IsBusiness == true)
             {
-                updateClientInfoFormated = string.Format(updateBClientInfoCommand, client.FirstName, client.SecondName, client.Phone, client.Address, client.businessName, client.ID);
+                updateClientInfoFormated = string.Format(updateBClientInfoCommand, client.FirstName, client.SecondName, client.Phone, client.Address, client.BusinessName, client.ID);
             }
             else if(client.IsBusiness == false)
             {
