@@ -15,7 +15,11 @@ namespace AgendaMillVitreAuto
         }
         public static void ChooseClientError()
         {
-            MessageBox.Show("Veuiller selectionner un client!", "Erreur");
+            MessageBox.Show("Veuiller choisir un client!", "Erreur");
+        }
+        public static void EnterClientNameError()
+        {
+            MessageBox.Show("Veuiller entré un nom complet!", "Erreur");
         }
 
     }
