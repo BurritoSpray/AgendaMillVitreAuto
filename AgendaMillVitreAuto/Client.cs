@@ -37,7 +37,7 @@ namespace AgendaMillVitreAuto
             _SecondName = client.SecondName;
             _Address = client.Address;
             _Phone = client.Phone;
-            _BusinessName = client.businessName;
+            _BusinessName = client.BusinessName;
             _Vehicles = client.VehicleList;
             IsBusiness = client.IsBusiness;
 
@@ -61,13 +61,13 @@ namespace AgendaMillVitreAuto
 
         public int ID { get { return _ID; } }
         public bool IsBusiness{ get { return _IsBusiness; } set { _IsBusiness = value; } }
-        public string SecondName{ get { return _SecondName; } }
-        public string FirstName{ get { return _FirstName; } }
+        public string SecondName{ get { return _SecondName; } set { _SecondName = value; } }
+        public string FirstName{ get { return _FirstName; } set { _FirstName = value; } }
         public string FullName{ get { return string.Format("{0} {1}", _FirstName, _SecondName); } }
         public List<Vehicle> VehicleList{ get { return _Vehicles; } set { _Vehicles = value; } }
-        public string Phone{ get { return _Phone; } }
-        public string Address{ get { return _Address; } }
-        public string businessName { 
+        public string Phone{ get { return _Phone; } set { _Phone = value; } }
+        public string Address{ get { return _Address; } set { _Address = value; } }
+        public string BusinessName { 
             get
             {
                 if (_IsBusiness == true)
