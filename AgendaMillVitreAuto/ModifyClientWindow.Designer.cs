@@ -42,10 +42,9 @@
             this.buttonConfirm = new System.Windows.Forms.Button();
             this.checkBoxIsbusiness = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.flowLayoutPanelMainButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonDeleteClient = new System.Windows.Forms.Button();
             this.dataGridViewVehicleList = new System.Windows.Forms.DataGridView();
-            this.groupBoxVehicleList = new System.Windows.Forms.GroupBox();
             this.groupBoxClientInfo = new System.Windows.Forms.GroupBox();
             this.groupBoxVehicleInfo = new System.Windows.Forms.GroupBox();
             this.numericUpDownVehicleYear = new System.Windows.Forms.NumericUpDown();
@@ -59,16 +58,25 @@
             this.labelVehicleBrand = new System.Windows.Forms.Label();
             this.labelVehicleModel = new System.Windows.Forms.Label();
             this.buttonAddVehicle = new System.Windows.Forms.Button();
-            this.buttonModifyVehicle = new System.Windows.Forms.Button();
+            this.buttonEditVehicle = new System.Windows.Forms.Button();
             this.buttonDeleteVehicle = new System.Windows.Forms.Button();
             this.buttonAddAppointment = new System.Windows.Forms.Button();
+            this.tabControlTable = new System.Windows.Forms.TabControl();
+            this.tabVehicleList = new System.Windows.Forms.TabPage();
+            this.tabAppointmentList = new System.Windows.Forms.TabPage();
+            this.dataGridViewAppointmentList = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanelActionButtons = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanelMainButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVehicleList)).BeginInit();
-            this.groupBoxVehicleList.SuspendLayout();
             this.groupBoxClientInfo.SuspendLayout();
             this.groupBoxVehicleInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVehicleYear)).BeginInit();
+            this.tabControlTable.SuspendLayout();
+            this.tabVehicleList.SuspendLayout();
+            this.tabAppointmentList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAppointmentList)).BeginInit();
+            this.tableLayoutPanelActionButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelName
@@ -126,42 +134,42 @@
             this.textBoxAddress.Location = new System.Drawing.Point(118, 122);
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(171, 20);
-            this.textBoxAddress.TabIndex = 19;
+            this.textBoxAddress.TabIndex = 5;
             // 
             // textBoxPhone
             // 
             this.textBoxPhone.Location = new System.Drawing.Point(118, 96);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(171, 20);
-            this.textBoxPhone.TabIndex = 18;
+            this.textBoxPhone.TabIndex = 4;
             // 
             // textBoxbusiness
             // 
             this.textBoxbusiness.Location = new System.Drawing.Point(118, 70);
             this.textBoxbusiness.Name = "textBoxbusiness";
             this.textBoxbusiness.Size = new System.Drawing.Size(171, 20);
-            this.textBoxbusiness.TabIndex = 17;
+            this.textBoxbusiness.TabIndex = 3;
             // 
             // textBoxFirstName
             // 
             this.textBoxFirstName.Location = new System.Drawing.Point(118, 18);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(171, 20);
-            this.textBoxFirstName.TabIndex = 16;
+            this.textBoxFirstName.TabIndex = 1;
             // 
             // textBoxSecondName
             // 
             this.textBoxSecondName.Location = new System.Drawing.Point(118, 44);
             this.textBoxSecondName.Name = "textBoxSecondName";
             this.textBoxSecondName.Size = new System.Drawing.Size(171, 20);
-            this.textBoxSecondName.TabIndex = 15;
+            this.textBoxSecondName.TabIndex = 2;
             // 
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(146, 3);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(137, 48);
-            this.buttonCancel.TabIndex = 20;
+            this.buttonCancel.TabIndex = 12;
             this.buttonCancel.Text = "Annuler";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -171,7 +179,7 @@
             this.buttonConfirm.Location = new System.Drawing.Point(3, 3);
             this.buttonConfirm.Name = "buttonConfirm";
             this.buttonConfirm.Size = new System.Drawing.Size(137, 48);
-            this.buttonConfirm.TabIndex = 21;
+            this.buttonConfirm.TabIndex = 11;
             this.buttonConfirm.Text = "Confirmer";
             this.buttonConfirm.UseVisualStyleBackColor = true;
             this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
@@ -201,24 +209,24 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(286, 54);
             this.tableLayoutPanel1.TabIndex = 23;
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanelMainButtons
             // 
-            this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel1);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 320);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(295, 120);
-            this.flowLayoutPanel1.TabIndex = 25;
+            this.flowLayoutPanelMainButtons.Controls.Add(this.tableLayoutPanel1);
+            this.flowLayoutPanelMainButtons.Controls.Add(this.buttonDeleteClient);
+            this.flowLayoutPanelMainButtons.Location = new System.Drawing.Point(12, 320);
+            this.flowLayoutPanelMainButtons.Name = "flowLayoutPanelMainButtons";
+            this.flowLayoutPanelMainButtons.Size = new System.Drawing.Size(295, 120);
+            this.flowLayoutPanelMainButtons.TabIndex = 25;
             // 
-            // button1
+            // buttonDeleteClient
             // 
-            this.button1.Location = new System.Drawing.Point(3, 63);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(286, 56);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Effacer le client";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonDeleteClient_Click);
+            this.buttonDeleteClient.Location = new System.Drawing.Point(3, 63);
+            this.buttonDeleteClient.Name = "buttonDeleteClient";
+            this.buttonDeleteClient.Size = new System.Drawing.Size(286, 56);
+            this.buttonDeleteClient.TabIndex = 13;
+            this.buttonDeleteClient.Text = "Effacer le client";
+            this.buttonDeleteClient.UseVisualStyleBackColor = true;
+            this.buttonDeleteClient.Click += new System.EventHandler(this.buttonDeleteClient_Click);
             // 
             // dataGridViewVehicleList
             // 
@@ -228,25 +236,15 @@
             this.dataGridViewVehicleList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewVehicleList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewVehicleList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewVehicleList.Location = new System.Drawing.Point(6, 19);
+            this.dataGridViewVehicleList.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewVehicleList.Name = "dataGridViewVehicleList";
             this.dataGridViewVehicleList.ReadOnly = true;
             this.dataGridViewVehicleList.RowHeadersVisible = false;
             this.dataGridViewVehicleList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewVehicleList.Size = new System.Drawing.Size(716, 346);
+            this.dataGridViewVehicleList.Size = new System.Drawing.Size(720, 351);
             this.dataGridViewVehicleList.TabIndex = 26;
             this.dataGridViewVehicleList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVehicleList_CellClick);
             this.dataGridViewVehicleList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVehicleList_CellDoubleClick);
-            // 
-            // groupBoxVehicleList
-            // 
-            this.groupBoxVehicleList.Controls.Add(this.dataGridViewVehicleList);
-            this.groupBoxVehicleList.Location = new System.Drawing.Point(313, 12);
-            this.groupBoxVehicleList.Name = "groupBoxVehicleList";
-            this.groupBoxVehicleList.Size = new System.Drawing.Size(728, 371);
-            this.groupBoxVehicleList.TabIndex = 27;
-            this.groupBoxVehicleList.TabStop = false;
-            this.groupBoxVehicleList.Text = "Liste de vehicules";
             // 
             // groupBoxClientInfo
             // 
@@ -298,7 +296,7 @@
             this.numericUpDownVehicleYear.Name = "numericUpDownVehicleYear";
             this.numericUpDownVehicleYear.ReadOnly = true;
             this.numericUpDownVehicleYear.Size = new System.Drawing.Size(160, 20);
-            this.numericUpDownVehicleYear.TabIndex = 40;
+            this.numericUpDownVehicleYear.TabIndex = 9;
             this.numericUpDownVehicleYear.Value = new decimal(new int[] {
             2020,
             0,
@@ -311,7 +309,7 @@
             this.textBoxVehicleNumber.Name = "textBoxVehicleNumber";
             this.textBoxVehicleNumber.ReadOnly = true;
             this.textBoxVehicleNumber.Size = new System.Drawing.Size(160, 20);
-            this.textBoxVehicleNumber.TabIndex = 41;
+            this.textBoxVehicleNumber.TabIndex = 10;
             // 
             // labelVehicleNumber
             // 
@@ -329,7 +327,7 @@
             this.textBoxVehicleColor.Name = "textBoxVehicleColor";
             this.textBoxVehicleColor.ReadOnly = true;
             this.textBoxVehicleColor.Size = new System.Drawing.Size(160, 20);
-            this.textBoxVehicleColor.TabIndex = 39;
+            this.textBoxVehicleColor.TabIndex = 8;
             // 
             // textBoxVehicleBrand
             // 
@@ -337,7 +335,7 @@
             this.textBoxVehicleBrand.Name = "textBoxVehicleBrand";
             this.textBoxVehicleBrand.ReadOnly = true;
             this.textBoxVehicleBrand.Size = new System.Drawing.Size(160, 20);
-            this.textBoxVehicleBrand.TabIndex = 37;
+            this.textBoxVehicleBrand.TabIndex = 6;
             // 
             // textBoxVehicleModel
             // 
@@ -345,7 +343,7 @@
             this.textBoxVehicleModel.Name = "textBoxVehicleModel";
             this.textBoxVehicleModel.ReadOnly = true;
             this.textBoxVehicleModel.Size = new System.Drawing.Size(160, 20);
-            this.textBoxVehicleModel.TabIndex = 38;
+            this.textBoxVehicleModel.TabIndex = 7;
             // 
             // labelVehicleYear
             // 
@@ -389,68 +387,135 @@
             // 
             // buttonAddVehicle
             // 
-            this.buttonAddVehicle.Location = new System.Drawing.Point(319, 383);
+            this.buttonAddVehicle.Location = new System.Drawing.Point(3, 3);
             this.buttonAddVehicle.Name = "buttonAddVehicle";
             this.buttonAddVehicle.Size = new System.Drawing.Size(148, 56);
-            this.buttonAddVehicle.TabIndex = 30;
+            this.buttonAddVehicle.TabIndex = 14;
             this.buttonAddVehicle.Text = "Nouveau Vehicule";
             this.buttonAddVehicle.UseVisualStyleBackColor = true;
             this.buttonAddVehicle.Click += new System.EventHandler(this.buttonAddVehicle_Click);
             // 
-            // buttonModifyVehicle
+            // buttonEditVehicle
             // 
-            this.buttonModifyVehicle.Location = new System.Drawing.Point(473, 383);
-            this.buttonModifyVehicle.Name = "buttonModifyVehicle";
-            this.buttonModifyVehicle.Size = new System.Drawing.Size(148, 56);
-            this.buttonModifyVehicle.TabIndex = 31;
-            this.buttonModifyVehicle.Text = "Modifier le vehicule";
-            this.buttonModifyVehicle.UseVisualStyleBackColor = true;
-            this.buttonModifyVehicle.Click += new System.EventHandler(this.buttonModifyVehicle_Click);
+            this.buttonEditVehicle.Location = new System.Drawing.Point(157, 3);
+            this.buttonEditVehicle.Name = "buttonEditVehicle";
+            this.buttonEditVehicle.Size = new System.Drawing.Size(148, 56);
+            this.buttonEditVehicle.TabIndex = 15;
+            this.buttonEditVehicle.Text = "Modifier le vehicule";
+            this.buttonEditVehicle.UseVisualStyleBackColor = true;
+            this.buttonEditVehicle.Click += new System.EventHandler(this.buttonModifyVehicle_Click);
             // 
             // buttonDeleteVehicle
             // 
-            this.buttonDeleteVehicle.Location = new System.Drawing.Point(627, 383);
+            this.buttonDeleteVehicle.Location = new System.Drawing.Point(311, 3);
             this.buttonDeleteVehicle.Name = "buttonDeleteVehicle";
             this.buttonDeleteVehicle.Size = new System.Drawing.Size(148, 56);
-            this.buttonDeleteVehicle.TabIndex = 32;
+            this.buttonDeleteVehicle.TabIndex = 16;
             this.buttonDeleteVehicle.Text = "Effacer le véhicule";
             this.buttonDeleteVehicle.UseVisualStyleBackColor = true;
             this.buttonDeleteVehicle.Click += new System.EventHandler(this.buttonDeleteVehicle_Click);
             // 
             // buttonAddAppointment
             // 
-            this.buttonAddAppointment.Location = new System.Drawing.Point(781, 383);
+            this.buttonAddAppointment.Location = new System.Drawing.Point(465, 3);
             this.buttonAddAppointment.Name = "buttonAddAppointment";
             this.buttonAddAppointment.Size = new System.Drawing.Size(254, 56);
-            this.buttonAddAppointment.TabIndex = 33;
+            this.buttonAddAppointment.TabIndex = 17;
             this.buttonAddAppointment.Text = "Ajouter un rendez-vous";
             this.buttonAddAppointment.UseVisualStyleBackColor = true;
             this.buttonAddAppointment.Click += new System.EventHandler(this.buttonAddAppointment_Click);
+            // 
+            // tabControlTable
+            // 
+            this.tabControlTable.Controls.Add(this.tabVehicleList);
+            this.tabControlTable.Controls.Add(this.tabAppointmentList);
+            this.tabControlTable.Location = new System.Drawing.Point(313, 0);
+            this.tabControlTable.Name = "tabControlTable";
+            this.tabControlTable.SelectedIndex = 0;
+            this.tabControlTable.Size = new System.Drawing.Size(728, 377);
+            this.tabControlTable.TabIndex = 18;
+            // 
+            // tabVehicleList
+            // 
+            this.tabVehicleList.Controls.Add(this.dataGridViewVehicleList);
+            this.tabVehicleList.Location = new System.Drawing.Point(4, 22);
+            this.tabVehicleList.Name = "tabVehicleList";
+            this.tabVehicleList.Padding = new System.Windows.Forms.Padding(3);
+            this.tabVehicleList.Size = new System.Drawing.Size(720, 351);
+            this.tabVehicleList.TabIndex = 1;
+            this.tabVehicleList.Text = "Liste de véhicles";
+            this.tabVehicleList.UseVisualStyleBackColor = true;
+            // 
+            // tabAppointmentList
+            // 
+            this.tabAppointmentList.Controls.Add(this.dataGridViewAppointmentList);
+            this.tabAppointmentList.Location = new System.Drawing.Point(4, 22);
+            this.tabAppointmentList.Name = "tabAppointmentList";
+            this.tabAppointmentList.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAppointmentList.Size = new System.Drawing.Size(720, 351);
+            this.tabAppointmentList.TabIndex = 0;
+            this.tabAppointmentList.Text = "Liste de rendez-vous";
+            this.tabAppointmentList.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewAppointmentList
+            // 
+            this.dataGridViewAppointmentList.AllowUserToAddRows = false;
+            this.dataGridViewAppointmentList.AllowUserToDeleteRows = false;
+            this.dataGridViewAppointmentList.AllowUserToResizeRows = false;
+            this.dataGridViewAppointmentList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewAppointmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAppointmentList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridViewAppointmentList.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewAppointmentList.Name = "dataGridViewAppointmentList";
+            this.dataGridViewAppointmentList.ReadOnly = true;
+            this.dataGridViewAppointmentList.RowHeadersVisible = false;
+            this.dataGridViewAppointmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAppointmentList.Size = new System.Drawing.Size(720, 351);
+            this.dataGridViewAppointmentList.TabIndex = 27;
+            // 
+            // tableLayoutPanelActionButtons
+            // 
+            this.tableLayoutPanelActionButtons.ColumnCount = 4;
+            this.tableLayoutPanelActionButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelActionButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelActionButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelActionButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelActionButtons.Controls.Add(this.buttonAddVehicle, 0, 0);
+            this.tableLayoutPanelActionButtons.Controls.Add(this.buttonAddAppointment, 3, 0);
+            this.tableLayoutPanelActionButtons.Controls.Add(this.buttonDeleteVehicle, 2, 0);
+            this.tableLayoutPanelActionButtons.Controls.Add(this.buttonEditVehicle, 1, 0);
+            this.tableLayoutPanelActionButtons.Location = new System.Drawing.Point(317, 379);
+            this.tableLayoutPanelActionButtons.Name = "tableLayoutPanelActionButtons";
+            this.tableLayoutPanelActionButtons.RowCount = 1;
+            this.tableLayoutPanelActionButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelActionButtons.Size = new System.Drawing.Size(718, 63);
+            this.tableLayoutPanelActionButtons.TabIndex = 34;
             // 
             // ModifyClientWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1053, 452);
-            this.Controls.Add(this.buttonAddAppointment);
-            this.Controls.Add(this.buttonDeleteVehicle);
-            this.Controls.Add(this.buttonModifyVehicle);
-            this.Controls.Add(this.buttonAddVehicle);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.tableLayoutPanelActionButtons);
+            this.Controls.Add(this.flowLayoutPanelMainButtons);
             this.Controls.Add(this.groupBoxVehicleInfo);
-            this.Controls.Add(this.groupBoxVehicleList);
             this.Controls.Add(this.groupBoxClientInfo);
+            this.Controls.Add(this.tabControlTable);
             this.Name = "ModifyClientWindow";
             this.Text = "Modification du client";
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanelMainButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVehicleList)).EndInit();
-            this.groupBoxVehicleList.ResumeLayout(false);
             this.groupBoxClientInfo.ResumeLayout(false);
             this.groupBoxClientInfo.PerformLayout();
             this.groupBoxVehicleInfo.ResumeLayout(false);
             this.groupBoxVehicleInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVehicleYear)).EndInit();
+            this.tabControlTable.ResumeLayout(false);
+            this.tabVehicleList.ResumeLayout(false);
+            this.tabAppointmentList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAppointmentList)).EndInit();
+            this.tableLayoutPanelActionButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -470,14 +535,13 @@
         private System.Windows.Forms.Button buttonConfirm;
         private System.Windows.Forms.CheckBox checkBoxIsbusiness;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMainButtons;
+        private System.Windows.Forms.Button buttonDeleteClient;
         private System.Windows.Forms.DataGridView dataGridViewVehicleList;
-        private System.Windows.Forms.GroupBox groupBoxVehicleList;
         private System.Windows.Forms.GroupBox groupBoxClientInfo;
         private System.Windows.Forms.GroupBox groupBoxVehicleInfo;
         private System.Windows.Forms.Button buttonAddVehicle;
-        private System.Windows.Forms.Button buttonModifyVehicle;
+        private System.Windows.Forms.Button buttonEditVehicle;
         private System.Windows.Forms.Button buttonDeleteVehicle;
         private System.Windows.Forms.NumericUpDown numericUpDownVehicleYear;
         private System.Windows.Forms.TextBox textBoxVehicleNumber;
@@ -490,5 +554,10 @@
         private System.Windows.Forms.Label labelVehicleBrand;
         private System.Windows.Forms.Label labelVehicleModel;
         private System.Windows.Forms.Button buttonAddAppointment;
+        private System.Windows.Forms.TabControl tabControlTable;
+        private System.Windows.Forms.TabPage tabVehicleList;
+        private System.Windows.Forms.TabPage tabAppointmentList;
+        private System.Windows.Forms.DataGridView dataGridViewAppointmentList;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelActionButtons;
     }
 }

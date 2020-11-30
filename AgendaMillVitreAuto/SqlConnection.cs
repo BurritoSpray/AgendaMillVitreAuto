@@ -175,7 +175,7 @@ namespace AgendaMillVitreAuto
                 while (reader.Read())
                 {
                     client = new Client(reader["idclient"].ToString(), reader["SecondName"].ToString(), reader["FirstName"].ToString(), reader["Phone"].ToString(), reader["Address"].ToString());
-                    if (reader["IsBussiness"].ToString() == "1")
+                    if (reader["IsBusiness"].ToString() == "1")
                     {
                         client.IsBusiness = true;
                         client.BusinessName = reader["BusinessName"].ToString();

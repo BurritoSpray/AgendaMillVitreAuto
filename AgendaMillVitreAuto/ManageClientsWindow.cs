@@ -21,6 +21,35 @@ namespace AgendaMillVitreAuto
         private System.Windows.Forms.Timer searchBoxTimer = new System.Windows.Forms.Timer();
         private bool firstLoad = true;
 
+        private Client SelectedClient
+        {
+            get { return selectedClient; }
+            set
+            {
+                if(value.ID == -1)
+                {
+                    infoGrid.ClearSelection();
+                    ClearClientInfoBox();
+                    ClearVehicleInfoBox();
+                    comboBoxVehicle.Items.Clear();
+                }
+                else if(value.ID != 1)
+                {
+                    for(int i = 0; i>= infoGrid.Rows.Count - 1; i++)
+                    {
+                        if(int.Parse(infoGrid["ID", i].Value.ToString()) == value.ID)
+                        {
+                            infoGrid.Rows[i].Selected = true;
+                            break;
+                        }
+                        SetSelectedClientInfo();
+                        SetVehicleComboBox();
+                    }
+                }
+                selectedClient = value;
+            }
+        }
+
         public ManageClientsWindow()
         {
             InitializeComponent();
@@ -82,11 +111,9 @@ namespace AgendaMillVitreAuto
         private void RefreshClientsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //Writing the data from sql to infoGrid
-            selectedClient = new Client();
+            SelectedClient = new Client();
             selectedVehicle = new Vehicle();
-            setSelectedClientInfo();
-            setSelectedVehicleInfo();
-            comboBoxVehicle.Items.Clear();
+            //comboBoxVehicle.Items.Clear();
             updateClientDataTable();
             clientDataTableBinding.DataSource = clientDataTable;
             clientDataTableBinding.ResetBindings(false);
@@ -224,25 +251,25 @@ namespace AgendaMillVitreAuto
             }
         }
         
-        private void setSelectedClientInfo()
+        private void SetSelectedClientInfo()
         {
-            if (selectedClient != null)
+            if (SelectedClient != null)
             {
-                textBoxFirstName.Text = selectedClient.FirstName;
-                textBoxSecondName.Text = selectedClient.SecondName;
-                textBoxPhone.Text = selectedClient.Phone;
-                textBoxAddress.Text = selectedClient.Address;
-                textBoxbusiness.Text = selectedClient.businessName;
+                textBoxFirstName.Text = SelectedClient.FirstName;
+                textBoxSecondName.Text = SelectedClient.SecondName;
+                textBoxPhone.Text = SelectedClient.Phone;
+                textBoxAddress.Text = SelectedClient.Address;
+                textBoxbusiness.Text = SelectedClient.BusinessName;
             }
         }
         
         private void SetVehicleComboBox()
         {
-            if (selectedClient.ID != -1)
+            if (SelectedClient.ID != -1)
             {
                 comboBoxVehicle.Items.Clear();
-                selectedClient.VehicleList = con.SelectClientVehicles(selectedClient.ID);
-                foreach (Vehicle vehicle in selectedClient.VehicleList)
+                SelectedClient.VehicleList = con.SelectClientVehicles(SelectedClient.ID);
+                foreach (Vehicle vehicle in SelectedClient.VehicleList)
                 {
                     comboBoxVehicle.Items.Add(vehicle.Brand + " " + vehicle.Model + " " + vehicle.Color);
                 }
@@ -288,19 +315,19 @@ namespace AgendaMillVitreAuto
         {
             if(e.RowIndex >= 0)
             {
-                selectedClient = clientList[e.RowIndex];
-                //Clear les textBox et cree l'objet Client selectedClient
+                //Test
+                //SelectedClient = clientList[e.RowIndex];
+                //Clear les textBox et cree l'objet Client SelectedClient
                 ClearClientInfoBox();
-                selectedClient = con.SelectClientInfo(int.Parse(infoGrid["ID", e.RowIndex].Value.ToString()));
-                textBoxFirstName.Text = selectedClient.FirstName;
-                textBoxSecondName.Text = selectedClient.SecondName;
-                textBoxPhone.Text = selectedClient.Phone;
-                textBoxAddress.Text = selectedClient.Address;
-                if (selectedClient.IsBusiness)
+                SelectedClient = con.SelectClientInfo(int.Parse(infoGrid["ID", e.RowIndex].Value.ToString()));
+                textBoxFirstName.Text = SelectedClient.FirstName;
+                textBoxSecondName.Text = SelectedClient.SecondName;
+                textBoxPhone.Text = SelectedClient.Phone;
+                textBoxAddress.Text = SelectedClient.Address;
+                if (SelectedClient.IsBusiness)
                 {
-                    textBoxbusiness.Text = selectedClient.businessName;
+                    textBoxbusiness.Text = SelectedClient.BusinessName;
                 }
-                selectedClient.VehicleList = con.SelectClientVehicles(selectedClient.ID);
                 //Clear selectedVehicle
                 selectedVehicle = new Vehicle();
                 //ComboBox Vehicle
@@ -320,7 +347,21 @@ namespace AgendaMillVitreAuto
             ClearVehicleInfoBox();
             ModifyClientWindow newClientWindow = new ModifyClientWindow(new Client(), true);
             var value = newClientWindow.ShowDialog();
-            RefreshClients();
+            if(value == DialogResult.OK)
+            {
+                RefreshClients();
+                SelectedClient = con.SelectLastAddedClient();
+                ModifyClientWindow clientWindow = new ModifyClientWindow(SelectedClient, false);
+                var val = clientWindow.ShowDialog();
+                if(val == DialogResult.OK)
+                {
+                    if (clientWindow.IsUpdateNeeded)
+                    {
+                        RefreshClients();
+                        SelectedClient = con.SelectClientInfo(SelectedClient.ID);
+                    }
+                }
+            }
 
 
         }
@@ -331,7 +372,7 @@ namespace AgendaMillVitreAuto
             if (comboBoxVehicle.SelectedIndex != -1)
             {
                 //Obtient les info du vehicule a partir du vehicleID
-                selectedVehicle = con.SelectVehicleInfo(selectedClient.VehicleList[comboBoxVehicle.SelectedIndex].ID);
+                selectedVehicle = con.SelectVehicleInfo(SelectedClient.VehicleList[comboBoxVehicle.SelectedIndex].ID);
                 setSelectedVehicleInfo();
             }
         }
@@ -343,17 +384,16 @@ namespace AgendaMillVitreAuto
 
         private void buttonDeleteSelectedClient_Click(object sender, EventArgs e)
         {
-            if (selectedClient.ID != -1)
+            if (SelectedClient.ID != -1)
             {
-                string msg = string.Format("Voulez-vous vraiment effacer le client {0}?", selectedClient.FullName);
+                string msg = string.Format("Voulez-vous vraiment effacer le client {0}?", SelectedClient.FullName);
                 var value = MessageBox.Show(msg, "Confirmation", MessageBoxButtons.YesNo);
                 if (value == DialogResult.Yes)
                 {
-                    //Delete selectedClient
-                    con.DeleteSelectedClient(selectedClient);
-                    selectedClient = new Client();
+                    //Delete SelectedClient
+                    con.DeleteSelectedClient(SelectedClient);
+                    SelectedClient = new Client();
                     RefreshClients();
-                    setSelectedClientInfo();
                 }
             }
             else
@@ -364,31 +404,29 @@ namespace AgendaMillVitreAuto
         //Edit client window
         private void buttonEditSelectedClient_Click(object sender, EventArgs e)
         {
-            if (selectedClient.ID != -1)
+            if (SelectedClient.ID != -1)
             {
-                modifyClientWindow = new ModifyClientWindow(selectedClient, false);
+                modifyClientWindow = new ModifyClientWindow(SelectedClient, false);
                 var value = modifyClientWindow.ShowDialog();
                 if(value == DialogResult.OK)
-                    selectedClient = con.SelectClientInfo(selectedClient.ID);
+                    SelectedClient = con.SelectClientInfo(SelectedClient.ID);
                 if (modifyClientWindow.IsUpdateNeeded)
                     RefreshClients();
                 modifyClientWindow.Dispose();
-                setSelectedClientInfo();
-                SetVehicleComboBox();
-                foreach(DataRow row in clientDataTable.Rows)
-                {
-                    if (selectedClient.ID.ToString() == row.Field<string>("ID"))
-                    {
-                        row["Nom"] = selectedClient.SecondName;
-                        row["Prenom"] = selectedClient.FirstName;
-                        row["Telephone"] = selectedClient.Phone;
-                        row["Adresse"] = selectedClient.Address;
-                        row["ID"] = selectedClient.ID;
-                        row["Business"] = selectedClient.IsBusiness;
-                        clientDataTableBinding.ResetBindings(false);
-                        break;
-                    }
-                }
+                //foreach(DataRow row in clientDataTable.Rows)
+                //{
+                //    if (SelectedClient.ID.ToString() == row.Field<string>("ID"))
+                //    {
+                //        row["Nom"] = SelectedClient.SecondName;
+                //        row["Prenom"] = SelectedClient.FirstName;
+                //        row["Telephone"] = SelectedClient.Phone;
+                //        row["Adresse"] = SelectedClient.Address;
+                //        row["ID"] = SelectedClient.ID;
+                //        row["Business"] = SelectedClient.IsBusiness;
+                //        clientDataTableBinding.ResetBindings(false);
+                //        break;
+                //    }
+                //}
             }
             else
             {
@@ -398,11 +436,11 @@ namespace AgendaMillVitreAuto
 
         private void buttonNewVehicle_Click(object sender, EventArgs e)
         {
-            if (selectedClient != null && selectedClient.ID != -1)
+            if (SelectedClient != null && SelectedClient.ID != -1)
             {
-                modifyVehicleWindow = new ModifyVehicleWindow(selectedClient);
+                modifyVehicleWindow = new ModifyVehicleWindow(SelectedClient);
                 var value = modifyVehicleWindow.ShowDialog();
-                selectedClient.VehicleList = con.SelectClientVehicles(selectedClient.ID);
+                SelectedClient.VehicleList = con.SelectClientVehicles(SelectedClient.ID);
                 SetVehicleComboBox();
             }
             else
@@ -416,14 +454,14 @@ namespace AgendaMillVitreAuto
             if (selectedVehicle.ID != -1)
             {
                 //Show messageBox to confirm if user really want to delete the selected vehicle
-                string msg = string.Format("Voulez-vous vraiment effacer {0}, {1}, {2} du client {3}", selectedVehicle.Brand, selectedVehicle.Model, selectedVehicle.Year, selectedClient.FullName);
+                string msg = string.Format("Voulez-vous vraiment effacer {0}, {1}, {2} du client {3}", selectedVehicle.Brand, selectedVehicle.Model, selectedVehicle.Year, SelectedClient.FullName);
                 var value = MessageBox.Show(msg, "Attention!", MessageBoxButtons.YesNo);
                 if (value == DialogResult.Yes)
                 {
                     con.DeleteSelectedVehicle(selectedVehicle);
                     selectedVehicle = new Vehicle();
                     setSelectedVehicleInfo();
-                    selectedClient.VehicleList = con.SelectClientVehicles(selectedClient.ID);
+                    SelectedClient.VehicleList = con.SelectClientVehicles(SelectedClient.ID);
                     SetVehicleComboBox();
                 }
             }
@@ -435,9 +473,9 @@ namespace AgendaMillVitreAuto
         
         private void buttonEditSelectedVehicle_Click(object sender, EventArgs e)
         {
-            if(selectedClient.ID != -1 && selectedVehicle.ID != -1)
+            if(SelectedClient.ID != -1 && selectedVehicle.ID != -1)
             {
-                modifyVehicleWindow = new ModifyVehicleWindow(selectedVehicle, selectedClient);
+                modifyVehicleWindow = new ModifyVehicleWindow(selectedVehicle, SelectedClient);
                 var value = modifyVehicleWindow.ShowDialog();
                 if (value == DialogResult.OK)
                 {
@@ -453,11 +491,11 @@ namespace AgendaMillVitreAuto
 
         private void buttonAddAppointment_Click(object sender, EventArgs e)
         {
-            if(selectedClient.ID != -1)
+            if(SelectedClient.ID != -1)
             {
                 if(selectedVehicle.ID != -1)
                 {
-                    manageAppointmentWindow = new ManageAppointmentWindow(selectedClient, selectedVehicle);
+                    manageAppointmentWindow = new ManageAppointmentWindow(SelectedClient, selectedVehicle);
                     manageAppointmentWindow.Show();
                 }
                 else

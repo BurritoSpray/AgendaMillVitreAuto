@@ -18,7 +18,7 @@ namespace AgendaMillVitreAuto
         private DataTable vehicleDataTable = new DataTable();
         private BindingSource vehicleGridBinding = new BindingSource();
         private BackgroundWorker vehicleGridWorker = new BackgroundWorker();
-        private bool isNewClient;
+        private bool isNewClient = false;
         private bool isUpdateNeeded = false;
         public ModifyClientWindow(Object client, bool newClient)
         {
@@ -29,7 +29,6 @@ namespace AgendaMillVitreAuto
             { 
                 this.Text = "Nouveau Client";
                 isUpdateNeeded = true;
-
             }
             //labelModifyClient.Text += "  ID: " + selectedClient.ID.ToString();
             textBoxSecondName.Text = selectedClient.SecondName;
@@ -38,7 +37,7 @@ namespace AgendaMillVitreAuto
             textBoxAddress.Text = selectedClient.Address;
             if (selectedClient.IsBusiness)
             {
-                textBoxbusiness.Text = selectedClient.businessName;
+                textBoxbusiness.Text = selectedClient.BusinessName;
                 checkBoxIsbusiness.Checked = true;
             }
             else
@@ -67,9 +66,31 @@ namespace AgendaMillVitreAuto
                 dataGridViewVehicleList.Columns["VehicleNumber"].Visible = false;
             dataGridViewVehicleList.Columns["ID"].Visible = false;
             vehicleGridWorker.RunWorkerAsync();
+            //GroupBox setup
+            enableControls(isNewClient);
+            
 
         }
         public bool IsUpdateNeeded { get { return isUpdateNeeded; } }
+
+        private void enableControls(bool NewClient)
+        {
+            if (NewClient)
+            {
+                groupBoxVehicleInfo.Enabled = false;
+                tableLayoutPanelActionButtons.Enabled = false;
+                tabControlTable.Enabled = false;
+                buttonDeleteClient.Enabled = false;
+            }
+            else
+            {
+                //-------------------------------
+                groupBoxVehicleInfo.Enabled = true;
+                tableLayoutPanelActionButtons.Enabled = true;
+                tabControlTable.Enabled = true;
+                buttonDeleteClient.Enabled = true;
+            }
+        }
 
         private void VehicleGridWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -95,25 +116,53 @@ namespace AgendaMillVitreAuto
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            Client client = new Client(selectedClient.ID.ToString(), textBoxSecondName.Text, textBoxFirstName.Text, textBoxPhone.Text, textBoxAddress.Text);
-            if (checkBoxIsbusiness.Checked)
+            if (isNewClient)
             {
-                client.IsBusiness = true;
-                client.businessName = textBoxbusiness.Text;
+                Client client = new Client();
+                client.FirstName = textBoxFirstName.Text;
+                client.SecondName = textBoxSecondName.Text;
+                client.Phone = textBoxPhone.Text;
+                client.Address = textBoxAddress.Text;
+                if (checkBoxIsbusiness.Checked)
+                {
+                    client.IsBusiness = true;
+                    client.BusinessName = textBoxbusiness.Text;
+                }
+                else
+                {
+                    client.IsBusiness = false;
+                    textBoxbusiness.Text = string.Empty;
+                }
+                if (isNewClient && textBoxFirstName.Text != string.Empty && textBoxSecondName.Text != string.Empty)
+                {
+                    con.InsertNewClient(client);
+                }
+                else
+                {
+                    if (textBoxFirstName.Text == string.Empty || textBoxSecondName.Text == string.Empty)
+                        ErrorMsg.EnterClientNameError();
+                }
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
-                client.IsBusiness = false;
-                textBoxbusiness.Text = string.Empty;
-            }
-            if(isNewClient)
-            {
-                con.InsertNewClient(client);
-            }
-            else
+                Client client = new Client(selectedClient.ID.ToString(), textBoxSecondName.Text, textBoxFirstName.Text, textBoxPhone.Text, textBoxAddress.Text);
+                if (checkBoxIsbusiness.Checked)
+                {
+                    client.IsBusiness = true;
+                    client.BusinessName = textBoxbusiness.Text;
+                }
+                else
+                {
+                    client.IsBusiness = false;
+                    textBoxbusiness.Text = string.Empty;
+                }
                 con.UpdateClientInfo(client);
-            this.DialogResult = DialogResult.OK;
-            this.Dispose();
+                this.DialogResult = DialogResult.OK;
+                this.Dispose();
+            }
+
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -219,5 +268,6 @@ namespace AgendaMillVitreAuto
             else
                 ErrorMsg.ChooseVehicleError();
         }
+
     }
 }
