@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
+using System.Threading;
+using System.Drawing;
 
 namespace AgendaMillVitreAuto
 {
@@ -11,6 +13,7 @@ namespace AgendaMillVitreAuto
         ModifyClientWindow modifyClientWindow;
         ModifyVehicleWindow modifyVehicleWindow;
         ManageAppointmentWindow manageAppointmentWindow;
+        LoadClientsProgressWindow progressWindow;
         private SqlConnection con = new SqlConnection();
         private List<Client> clientList = new List<Client>();
         private Client selectedClient = new Client();
@@ -19,7 +22,8 @@ namespace AgendaMillVitreAuto
         private DataTable tempClientDataTable = new DataTable("temp");
         private BindingSource clientDataTableBinding = new BindingSource();
         private System.Windows.Forms.Timer searchBoxTimer = new System.Windows.Forms.Timer();
-        private bool firstLoad = true;
+        private bool isProgressWindowEnabled = true;
+        //private bool firstLoad = true;
 
         private Client SelectedClient
         {
@@ -32,6 +36,7 @@ namespace AgendaMillVitreAuto
                     ClearClientInfoBox();
                     ClearVehicleInfoBox();
                     comboBoxVehicle.Items.Clear();
+                    selectedVehicle = new Vehicle();
                 }
                 else if(value.ID != 1)
                 {
@@ -102,10 +107,32 @@ namespace AgendaMillVitreAuto
 
         private void RefreshClients()
         {
+            //ProgressWindow
+            if (isProgressWindowEnabled)
+            {
+                if (progressWindow != null)
+                {
+                    if (!progressWindow.IsDisposed)
+                        progressWindow.Dispose();
+                }
+                progressWindow = new LoadClientsProgressWindow();
+                progressWindow.Show();
+                progressWindow.Maximum = 100;
+            }
+            //LoadClientsWorker
             BackgroundWorker loadClientsWorker = new BackgroundWorker();
             loadClientsWorker.DoWork += RefreshClientsWorker_DoWork;
             loadClientsWorker.RunWorkerCompleted += RefreshClientsWorker_RunWorkerCompleted;
             loadClientsWorker.RunWorkerAsync();
+            //if (progressWindow != null)
+            //{
+            //    progressWindow.progressBar.Value = e.ProgressPercentage;
+            //    if (e.ProgressPercentage == 100)
+            //    {
+            //        Thread.Sleep(50);
+            //        progressWindow.Dispose();
+            //    }
+            //}
         }
 
         private void RefreshClientsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -121,6 +148,11 @@ namespace AgendaMillVitreAuto
 
         private void updateClientDataTable()
         {
+            int actualClient = 0;
+            if (isProgressWindowEnabled)
+            {
+                progressWindow.Maximum = 100;
+            }
             string clientType = string.Empty;
             string searchBoxText = textBoxSearch.Text.ToLower();
             if (radioAll.Checked)
@@ -159,6 +191,11 @@ namespace AgendaMillVitreAuto
                         }
                         else
                             tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                        if (isProgressWindowEnabled)
+                        {
+                            progressWindow.Progress = (int)((decimal)actualClient / (decimal)clientList.Count * (decimal)100);
+                            actualClient += 1;
+                        }
                     }
                     break;
                 case "private":
@@ -189,6 +226,11 @@ namespace AgendaMillVitreAuto
                             }
                             else
                                 tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
+                        }
+                        if (isProgressWindowEnabled)
+                        {
+                            progressWindow.Progress = (int)((decimal)actualClient / (decimal)clientList.Count * (decimal)100);
+                            actualClient += 1;
                         }
                     }
                     break;
@@ -223,10 +265,22 @@ namespace AgendaMillVitreAuto
                             else
                                 tempClientDataTable.Rows.Add(client.SecondName, client.FirstName, client.Phone, client.Address, client.ID, client.IsBusiness);
                         }
+                        if (isProgressWindowEnabled)
+                        {
+                            progressWindow.Progress = (int)((decimal)actualClient / (decimal)clientList.Count * (decimal)100);
+                            actualClient += 1;
+                        }
                     }
                     break;
             }
             clientDataTable = tempClientDataTable.Copy();
+            if (isProgressWindowEnabled)
+            {
+                progressWindow.Progress = progressWindow.Maximum;
+                //Thread.Sleep(25);
+                progressWindow.Close();
+            }
+
         }
 
         private void RefreshClientsWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -340,11 +394,7 @@ namespace AgendaMillVitreAuto
         private void buttonNewClient_Click(object sender, EventArgs e)
         {
             infoGrid.ClearSelection();
-            //Clear ClientTextbox
-            ClearClientInfoBox();
-            //Clear Vehicle Info
-            selectedVehicle = new Vehicle();//Peut etre besoin detre null a place de new Vehicle
-            ClearVehicleInfoBox();
+            SelectedClient = new Client();
             ModifyClientWindow newClientWindow = new ModifyClientWindow(new Client(), true);
             var value = newClientWindow.ShowDialog();
             if(value == DialogResult.OK)

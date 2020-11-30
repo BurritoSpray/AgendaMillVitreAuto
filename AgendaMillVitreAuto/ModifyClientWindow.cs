@@ -188,23 +188,24 @@ namespace AgendaMillVitreAuto
 
         private void dataGridViewVehicleList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            selectedVehicle = con.SelectVehicleInfo(int.Parse(dataGridViewVehicleList["ID", e.RowIndex].Value.ToString()));
-            textBoxVehicleBrand.Text = selectedVehicle.Brand;
-            textBoxVehicleColor.Text = selectedVehicle.Color;
-            textBoxVehicleModel.Text = selectedVehicle.Model;
-            numericUpDownVehicleYear.Value = selectedVehicle.Year;
-            if(selectedClient.IsBusiness)
+            if (e.RowIndex != -1)
             {
-                textBoxVehicleNumber.Enabled = true;
-                textBoxVehicleNumber.Text = selectedVehicle.VehicleNumber;
+                selectedVehicle = con.SelectVehicleInfo(int.Parse(dataGridViewVehicleList["ID", e.RowIndex].Value.ToString()));
+                textBoxVehicleBrand.Text = selectedVehicle.Brand;
+                textBoxVehicleColor.Text = selectedVehicle.Color;
+                textBoxVehicleModel.Text = selectedVehicle.Model;
+                numericUpDownVehicleYear.Value = selectedVehicle.Year;
+                if (selectedClient.IsBusiness)
+                {
+                    textBoxVehicleNumber.Enabled = true;
+                    textBoxVehicleNumber.Text = selectedVehicle.VehicleNumber;
+                }
+                else
+                {
+                    textBoxVehicleNumber.Enabled = false;
+                    textBoxVehicleNumber.Clear();
+                }
             }
-            else
-            {
-                textBoxVehicleNumber.Enabled = false;
-                textBoxVehicleNumber.Clear();
-            }
-
-
         }
 
         private void buttonModifyVehicle_Click(object sender, EventArgs e)
