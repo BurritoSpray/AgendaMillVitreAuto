@@ -287,6 +287,11 @@
             // 
             // numericUpDownVehicleYear
             // 
+            this.numericUpDownVehicleYear.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.numericUpDownVehicleYear.Location = new System.Drawing.Point(129, 96);
             this.numericUpDownVehicleYear.Maximum = new decimal(new int[] {
             3000,
