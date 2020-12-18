@@ -215,6 +215,21 @@ namespace AgendaMillVitreAuto
                 ModifyVehicleWindow vehicleWindow = new ModifyVehicleWindow(selectedVehicle, selectedClient);
                 var value = vehicleWindow.ShowDialog();
                 updateVehicleDataTable();
+                selectedVehicle = con.SelectVehicleInfo(selectedVehicle.ID);
+                textBoxVehicleBrand.Text = selectedVehicle.Brand;
+                textBoxVehicleColor.Text = selectedVehicle.Color;
+                textBoxVehicleModel.Text = selectedVehicle.Model;
+                numericUpDownVehicleYear.Value = selectedVehicle.Year;
+                if (selectedClient.IsBusiness)
+                {
+                    textBoxVehicleNumber.Enabled = true;
+                    textBoxVehicleNumber.Text = selectedVehicle.VehicleNumber;
+                }
+                else
+                {
+                    textBoxVehicleNumber.Enabled = false;
+                    textBoxVehicleNumber.Clear();
+                }
             }
             else
             {
@@ -269,6 +284,5 @@ namespace AgendaMillVitreAuto
             else
                 ErrorMsg.ChooseVehicleError();
         }
-
     }
 }
